@@ -1,0 +1,253 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Interface/Counter/d6Counter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/default_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/help.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Interface.gd" type="Script" id=4]
+[ext_resource path="res://Interface/Counter/d20Counter.tscn" type="PackedScene" id=5]
+
+[sub_resource type="InputEventKey" id=1]
+scancode = 78
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="InputEventKey" id=3]
+scancode = 77
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventKey" id=5]
+scancode = 32
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[sub_resource type="InputEventKey" id=7]
+shift = true
+scancode = 32
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
+
+[sub_resource type="InputEventKey" id=9]
+scancode = 76
+
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
+
+[sub_resource type="InputEventKey" id=11]
+scancode = 67
+
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 11 )
+
+[node name="Interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.23309
+margin_top = 1.64413
+margin_right = -1.23315
+margin_bottom = 1.64417
+mouse_filter = 2
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="d6Counter" parent="." instance=ExtResource( 1 )]
+margin_left = 96.0
+margin_top = 8.0
+margin_right = 178.0
+margin_bottom = 170.0
+
+[node name="d20Counter" parent="." instance=ExtResource( 5 )]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 90.0
+margin_bottom = 170.0
+
+[node name="AddDie" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = 96.0
+grow_horizontal = 0
+hint_tooltip = "adds a die of the type where the maximum changed last"
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+shortcut = SubResource( 2 )
+text = "Add Die"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddMaxDice" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 104.0
+margin_right = -8.0
+margin_bottom = 149.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+shortcut = SubResource( 4 )
+text = "Add Max Amount"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Roll" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 368.0
+margin_right = -7.99976
+margin_bottom = 463.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+shortcut = SubResource( 6 )
+text = "Roll"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RollInvalidDice" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 472.0
+margin_right = -8.0
+margin_bottom = 517.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+shortcut = SubResource( 8 )
+text = "Roll Invalid Dice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LockValidDice" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 528.0
+margin_right = -8.0
+margin_bottom = 573.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+toggle_mode = true
+enabled_focus_mode = 0
+shortcut = SubResource( 10 )
+text = "Lock Valid Dice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClearDice" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -260.0
+margin_top = 600.0
+margin_right = -8.0
+margin_bottom = 645.0
+grow_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+shortcut = SubResource( 12 )
+text = "Clear Dice"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AreaScale" type="HSlider" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -262.0
+margin_top = -48.0
+margin_right = -135.0
+margin_bottom = -32.0
+rect_scale = Vector2( 2, 2 )
+hint_tooltip = "Area Scale"
+mouse_default_cursor_shape = 10
+min_value = 0.2
+max_value = 1.0
+step = 0.2
+value = 0.2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CameraZoom" type="HSlider" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -262.0
+margin_top = -96.0
+margin_right = -135.0
+margin_bottom = -80.0
+rect_scale = Vector2( 2, 2 )
+hint_tooltip = "Camera Zoom"
+mouse_default_cursor_shape = 10
+max_value = 32.0
+step = 0.5
+value = 32.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -317.0
+margin_top = 8.0
+margin_right = -272.0
+margin_bottom = 53.0
+hint_tooltip = "Shortcuts: 
+N - New die
+M - Fill to Max dice limit
+C - Clear all dice
+L - Lock all valid dice (so you can reroll in peace)
+
+Space - roll all dice
+Shift + Space - roll invalid dice
+Left Mouse Button - roll selected die
+"
+mouse_default_cursor_shape = 16
+theme = ExtResource( 2 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="AddDie" to="." method="_on_AddDie_button_down"]
+[connection signal="button_down" from="AddMaxDice" to="." method="_on_AddMaxDice_button_down"]
+[connection signal="button_down" from="Roll" to="." method="_on_Roll_button_down"]
+[connection signal="button_down" from="RollInvalidDice" to="." method="_on_RollInvalidDice_button_down"]
+[connection signal="button_down" from="LockValidDice" to="." method="_on_LockValidDice_button_down"]
+[connection signal="button_down" from="ClearDice" to="." method="_on_ClearDice_button_down"]
+[connection signal="value_changed" from="AreaScale" to="." method="_on_AreaScale_value_changed"]
+[connection signal="value_changed" from="CameraZoom" to="." method="_on_CameraZoom_value_changed"]

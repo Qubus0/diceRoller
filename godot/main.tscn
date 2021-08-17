@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://dice/d6.tscn" type="PackedScene" id=1]
+[ext_resource path="res://main.gd" type="Script" id=2]
+[ext_resource path="res://World/wall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Interface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://dice/d20.tscn" type="PackedScene" id=5]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 50, 0.2, 50 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.494118, 0.494118, 0.494118, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 25, 0.1, 25 )
+
+[sub_resource type="Curve3D" id=5]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -14.9054, 37.2808, 0.000106812, 0, 0, 0, 0, 0, 0, -0.000216946, 0.000108479, 0 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[node name="main" type="Spatial"]
+script = ExtResource( 2 )
+d6 = ExtResource( 1 )
+d20 = ExtResource( 5 )
+
+[node name="Interface" parent="." instance=ExtResource( 4 )]
+
+[node name="Box" type="Spatial" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
+__meta__ = {
+"_editor_description_": " "
+}
+
+[node name="Floor" type="StaticBody" parent="Box"]
+physics_material_override = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Box/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+shape = SubResource( 4 )
+
+[node name="Roof" type="StaticBody" parent="Box"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Box/Roof"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+shape = SubResource( 4 )
+
+[node name="Wall-z" parent="Box" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25 )
+
+[node name="Wall+z" parent="Box" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25 )
+
+[node name="Wall-x" parent="Box" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 0, 0 )
+
+[node name="Wall+x" parent="Box" instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 0, 0 )
+
+[node name="AllDice" type="Node2D" parent="."]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.44797, 0.873044, -0.192658, -0.465221, 0.411644, 0.783657, 0.763474, -0.261426, 0.590563, -4.34003, 2.79553, 0 )
+
+[node name="Path" type="Path" parent="."]
+curve = SubResource( 5 )
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( 0.999998, -0.00223915, -1.37981e-06, 0.00223915, 0.999998, -4.4668e-06, 1.38981e-06, 4.4637e-06, 1, -2.7153, 6.79105, 1.94566e-05 )
+offset = 32.82
+rotation_mode = 0
+
+[node name="Camera" type="Camera" parent="Path/PathFollow"]
+transform = Transform( -4.37117e-08, 0.965925, -0.258819, 0, 0.258819, 0.965925, 1, 4.22217e-08, -1.13118e-08, 0, 0, 0 )
