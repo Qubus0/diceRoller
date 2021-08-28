@@ -1,87 +1,211 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=48 format=2]
 
-[ext_resource path="res://Interface/Counter/d6Counter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/dice/d10.png" type="Texture" id=1]
 [ext_resource path="res://Interface/default_theme.tres" type="Theme" id=2]
 [ext_resource path="res://Interface/help.png" type="Texture" id=3]
-[ext_resource path="res://Interface/Interface.gd" type="Script" id=4]
-[ext_resource path="res://Interface/Counter/d20Counter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interface/scripts/Interface.gd" type="Script" id=4]
+[ext_resource path="res://Interface/dice/d12.png" type="Texture" id=5]
+[ext_resource path="res://Interface/dice/d4.png" type="Texture" id=6]
+[ext_resource path="res://Interface/dice/d8.png" type="Texture" id=7]
+[ext_resource path="res://Interface/dice/d20.png" type="Texture" id=8]
+[ext_resource path="res://Interface/DiceSelect.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Interface/dice/d8selected.png" type="Texture" id=10]
+[ext_resource path="res://Interface/dice/d10selected.png" type="Texture" id=11]
+[ext_resource path="res://Interface/dice/d12selected.png" type="Texture" id=12]
+[ext_resource path="res://Interface/dice/d6selected.png" type="Texture" id=13]
+[ext_resource path="res://Interface/dice/d4selected.png" type="Texture" id=14]
+[ext_resource path="res://Interface/dice/d20selected.png" type="Texture" id=15]
+[ext_resource path="res://Interface/font/monospace.tres" type="DynamicFont" id=16]
 
-[sub_resource type="InputEventKey" id=1]
-scancode = 78
+[sub_resource type="InputEventAction" id=1]
+action = "select_d4"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
 
-[sub_resource type="InputEventKey" id=3]
-scancode = 77
+[sub_resource type="ButtonGroup" id=3]
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="InputEventAction" id=4]
+action = "select_d6"
 
-[sub_resource type="InputEventKey" id=5]
-scancode = 32
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
+[sub_resource type="ButtonGroup" id=6]
 
-[sub_resource type="InputEventKey" id=7]
-shift = true
-scancode = 32
+[sub_resource type="InputEventAction" id=7]
+action = "select_d8"
 
 [sub_resource type="ShortCut" id=8]
 shortcut = SubResource( 7 )
 
-[sub_resource type="InputEventKey" id=9]
-scancode = 76
+[sub_resource type="ButtonGroup" id=9]
 
-[sub_resource type="ShortCut" id=10]
-shortcut = SubResource( 9 )
+[sub_resource type="InputEventAction" id=10]
+action = "select_d10"
 
-[sub_resource type="InputEventKey" id=11]
-scancode = 67
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
 
-[sub_resource type="ShortCut" id=12]
-shortcut = SubResource( 11 )
+[sub_resource type="ButtonGroup" id=12]
+
+[sub_resource type="InputEventAction" id=13]
+action = "select_d12"
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
+
+[sub_resource type="ButtonGroup" id=15]
+
+[sub_resource type="InputEventAction" id=16]
+action = "select_d20"
+
+[sub_resource type="ShortCut" id=17]
+shortcut = SubResource( 16 )
+
+[sub_resource type="ButtonGroup" id=18]
+
+[sub_resource type="InputEventAction" id=19]
+action = "add_die"
+
+[sub_resource type="ShortCut" id=20]
+shortcut = SubResource( 19 )
+
+[sub_resource type="InputEventAction" id=21]
+action = "add_max"
+
+[sub_resource type="ShortCut" id=22]
+shortcut = SubResource( 21 )
+
+[sub_resource type="InputEventKey" id=23]
+scancode = 32
+
+[sub_resource type="ShortCut" id=24]
+shortcut = SubResource( 23 )
+
+[sub_resource type="InputEventKey" id=25]
+shift = true
+scancode = 32
+
+[sub_resource type="ShortCut" id=26]
+shortcut = SubResource( 25 )
+
+[sub_resource type="InputEventAction" id=27]
+action = "lock_dice"
+
+[sub_resource type="ShortCut" id=28]
+shortcut = SubResource( 27 )
+
+[sub_resource type="InputEventAction" id=29]
+action = "clear"
+
+[sub_resource type="ShortCut" id=30]
+shortcut = SubResource( 29 )
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0.14902, 0.172549, 0.231373, 0.482353 )
+corner_detail = 2
+anti_aliasing = false
 
 [node name="Interface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -1.23309
-margin_top = 1.64413
+margin_top = 1.06665
 margin_right = -1.23315
-margin_bottom = 1.64417
+margin_bottom = 1.06665
 mouse_filter = 2
+theme = ExtResource( 2 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="d6Counter" parent="." instance=ExtResource( 1 )]
-margin_left = 96.0
-margin_top = 8.0
-margin_right = 178.0
-margin_bottom = 170.0
+[node name="d4" parent="." instance=ExtResource( 9 )]
+margin_left = 41.2331
+margin_top = 22.9333
+margin_right = 101.233
+margin_bottom = 82.9333
+hint_tooltip = "(1)"
+shortcut = SubResource( 2 )
+group = SubResource( 3 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 14 )
+type = "d4"
 
-[node name="d20Counter" parent="." instance=ExtResource( 5 )]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 90.0
-margin_bottom = 170.0
+[node name="d6" parent="." instance=ExtResource( 9 )]
+margin_left = 161.233
+margin_top = 22.9333
+margin_right = 221.233
+margin_bottom = 82.9333
+hint_tooltip = "(2)"
+shortcut = SubResource( 5 )
+group = SubResource( 6 )
+texture_pressed = ExtResource( 13 )
+type = "d6"
+
+[node name="d8" parent="." instance=ExtResource( 9 )]
+margin_left = 41.2331
+margin_top = 166.933
+margin_right = 101.233
+margin_bottom = 226.933
+hint_tooltip = "(3)"
+shortcut = SubResource( 8 )
+group = SubResource( 9 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 10 )
+type = "d8"
+
+[node name="d10" parent="." instance=ExtResource( 9 )]
+margin_left = 161.233
+margin_top = 166.933
+margin_right = 221.233
+margin_bottom = 226.933
+hint_tooltip = "(4)"
+shortcut = SubResource( 11 )
+group = SubResource( 12 )
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 11 )
+type = "d10"
+
+[node name="d12" parent="." instance=ExtResource( 9 )]
+margin_left = 41.2331
+margin_top = 310.933
+margin_right = 101.233
+margin_bottom = 370.933
+hint_tooltip = "(5)"
+shortcut = SubResource( 14 )
+group = SubResource( 15 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 12 )
+type = "d12"
+
+[node name="d20" parent="." instance=ExtResource( 9 )]
+margin_left = 161.233
+margin_top = 310.933
+margin_right = 221.233
+margin_bottom = 370.933
+hint_tooltip = "(6)"
+shortcut = SubResource( 17 )
+group = SubResource( 18 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 15 )
+type = "d20"
 
 [node name="AddDie" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = 96.0
+margin_left = -287.0
+margin_top = 16.0
+margin_right = -15.9999
+margin_bottom = 104.0
 grow_horizontal = 0
-hint_tooltip = "adds a die of the type where the maximum changed last"
+hint_tooltip = "(N)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 2 )
+shortcut = SubResource( 20 )
 text = "Add Die"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,16 +214,17 @@ __meta__ = {
 [node name="AddMaxDice" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 104.0
-margin_right = -8.0
-margin_bottom = 149.0
+margin_left = -287.0
+margin_top = 112.0
+margin_right = -15.9999
+margin_bottom = 167.0
 grow_horizontal = 0
+hint_tooltip = "(M)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 4 )
+shortcut = SubResource( 22 )
 text = "Add Max Amount"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -108,16 +233,17 @@ __meta__ = {
 [node name="Roll" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 368.0
-margin_right = -7.99976
-margin_bottom = 463.0
+margin_left = -287.0
+margin_top = 239.0
+margin_right = -14.9999
+margin_bottom = 334.0
 grow_horizontal = 0
+hint_tooltip = "(Space)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 6 )
+shortcut = SubResource( 24 )
 text = "Roll"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -126,16 +252,17 @@ __meta__ = {
 [node name="RollInvalidDice" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 472.0
-margin_right = -8.0
-margin_bottom = 517.0
+margin_left = -287.0
+margin_top = 343.0
+margin_right = -14.9999
+margin_bottom = 398.0
 grow_horizontal = 0
+hint_tooltip = "(Shift + Space)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 8 )
+shortcut = SubResource( 26 )
 text = "Roll Invalid Dice"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -144,17 +271,18 @@ __meta__ = {
 [node name="LockValidDice" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 528.0
-margin_right = -8.0
-margin_bottom = 573.0
+margin_left = -287.0
+margin_top = 407.0
+margin_right = -14.9999
+margin_bottom = 462.0
 grow_horizontal = 0
+hint_tooltip = "(L)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
 toggle_mode = true
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 10 )
+shortcut = SubResource( 28 )
 text = "Lock Valid Dice"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -163,16 +291,17 @@ __meta__ = {
 [node name="ClearDice" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -260.0
-margin_top = 600.0
-margin_right = -8.0
-margin_bottom = 645.0
+margin_left = -287.0
+margin_top = 487.0
+margin_right = -14.9999
+margin_bottom = 542.0
 grow_horizontal = 0
+hint_tooltip = "(C)"
 focus_mode = 0
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
+shortcut_in_tooltip = false
 enabled_focus_mode = 0
-shortcut = SubResource( 12 )
+shortcut = SubResource( 30 )
 text = "Clear Dice"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -183,11 +312,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -262.0
-margin_top = -48.0
-margin_right = -135.0
-margin_bottom = -32.0
-rect_scale = Vector2( 2, 2 )
+margin_left = -287.0
+margin_top = -49.0
+margin_right = -14.9999
+margin_bottom = -17.0
 hint_tooltip = "Area Scale"
 mouse_default_cursor_shape = 10
 min_value = 0.2
@@ -203,11 +331,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -262.0
-margin_top = -96.0
-margin_right = -135.0
-margin_bottom = -80.0
-rect_scale = Vector2( 2, 2 )
+margin_left = -287.0
+margin_top = -97.0
+margin_right = -13.9999
+margin_bottom = -65.0
 hint_tooltip = "Camera Zoom"
 mouse_default_cursor_shape = 10
 max_value = 32.0
@@ -217,23 +344,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Counter" type="Tree" parent="."]
+anchor_bottom = 1.0
+margin_left = 17.2331
+margin_top = 446.933
+margin_right = 250.233
+margin_bottom = -10.0667
+hint_tooltip = "count all the thing!
+
+die type      amount
+- [ side ]      amount
+- sum          side sum"
+focus_mode = 0
+custom_styles/bg = SubResource( 31 )
+custom_fonts/font = ExtResource( 16 )
+columns = 2
+hide_folding = true
+hide_root = true
+select_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Help" type="TextureRect" parent="."]
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-margin_left = -317.0
-margin_top = 8.0
-margin_right = -272.0
-margin_bottom = 53.0
-hint_tooltip = "Shortcuts: 
-N - New die
-M - Fill to Max dice limit
-C - Clear all dice
-L - Lock all valid dice (so you can reroll in peace)
-
+anchor_bottom = 1.0
+margin_left = -287.0
+margin_top = -169.0
+margin_right = -231.0
+margin_bottom = -113.0
+hint_tooltip = "Hotkeys: 
 Space - roll all dice
 Shift + Space - roll invalid dice
-Left Mouse Button - roll selected die
-"
+
+N - New die (of selected type)
+M - Fill to max dice limit
+C - Clear all dice
+L - Lock all valid dice (so you can reroll in peace)
+Numbers - Select die types
+
+Left Mouse Button - Roll clicked die
+Right Mouse Button - Remove clicked die
+
+Range sliders change area size and camera"
 mouse_default_cursor_shape = 16
 theme = ExtResource( 2 )
 texture = ExtResource( 3 )
@@ -243,6 +398,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Border" type="ColorPickerButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -70.767
+margin_top = -169.067
+margin_right = -14.767
+margin_bottom = -114.067
+focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="ColorPickerButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -142.767
+margin_top = -169.067
+margin_right = -86.767
+margin_bottom = -114.067
+focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Body" type="ColorPickerButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -214.767
+margin_top = -169.067
+margin_right = -158.767
+margin_bottom = -114.067
+focus_mode = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FeatureRequest" type="LinkButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -278.767
+margin_top = -225.067
+margin_right = -32.7668
+margin_bottom = -186.067
+text = "Request a feature"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="d4" to="." method="_on_type_selected"]
+[connection signal="toggled" from="d6" to="." method="_on_type_selected"]
+[connection signal="toggled" from="d8" to="." method="_on_type_selected"]
+[connection signal="toggled" from="d10" to="." method="_on_type_selected"]
+[connection signal="toggled" from="d12" to="." method="_on_type_selected"]
+[connection signal="toggled" from="d20" to="." method="_on_type_selected"]
 [connection signal="button_down" from="AddDie" to="." method="_on_AddDie_button_down"]
 [connection signal="button_down" from="AddMaxDice" to="." method="_on_AddMaxDice_button_down"]
 [connection signal="button_down" from="Roll" to="." method="_on_Roll_button_down"]
@@ -251,3 +468,7 @@ __meta__ = {
 [connection signal="button_down" from="ClearDice" to="." method="_on_ClearDice_button_down"]
 [connection signal="value_changed" from="AreaScale" to="." method="_on_AreaScale_value_changed"]
 [connection signal="value_changed" from="CameraZoom" to="." method="_on_CameraZoom_value_changed"]
+[connection signal="color_changed" from="Border" to="." method="_on_Border_color_changed"]
+[connection signal="color_changed" from="Number" to="." method="_on_Number_color_changed"]
+[connection signal="color_changed" from="Body" to="." method="_on_Body_color_changed"]
+[connection signal="pressed" from="FeatureRequest" to="." method="_on_FeatureRequest_pressed"]
