@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Fonts/default_font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+draw_center = false
+border_width_right = 5
+border_color = Color( 1, 0.92549, 0.839216, 1 )
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 10.0
+content_margin_right = 20.0
+draw_center = false
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.92549, 0.839216, 1 )
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_detail = 4
+
+[sub_resource type="ImageTexture" id=4]
+
+[resource]
+default_font = ExtResource( 1 )
+LineEdit/colors/cursor_color = Color( 1, 0.92549, 0.839216, 1 )
+LineEdit/colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+LineEdit/colors/font_color_selected = Color( 1, 0.768627, 0.564706, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.878431, 0.878431, 0.878431, 0.501961 )
+LineEdit/colors/selection_color = Color( 0.552941, 0.411765, 0.478431, 1 )
+LineEdit/styles/focus = SubResource( 2 )
+LineEdit/styles/normal = SubResource( 1 )
+SpinBox/icons/updown = SubResource( 4 )

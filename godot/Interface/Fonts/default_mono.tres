@@ -1,0 +1,8 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://Interface/Fonts/JetBrainsMono-Regular.ttf" type="DynamicFontData" id=1]
+
+[resource]
+outline_color = Color( 1, 0.92549, 0.839216, 1 )
+use_filter = true
+font_data = ExtResource( 1 )

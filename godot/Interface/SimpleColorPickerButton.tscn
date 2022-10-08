@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Interface/Scripts/SimpleColorPickerButton.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Themes/color_picker_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/Themes/button_icon_theme.tres" type="Theme" id=3]
+[ext_resource path="res://Interface/Icons/refresh-circle.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 2.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.12549, 0.235294, 0.337255, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="SimpleColorPickerButton" type="Button"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+mouse_default_cursor_shape = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -1.0
+mouse_filter = 2
+color = Color( 0.66, 0.66, 0.66, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -13.0
+margin_top = -12.0
+margin_right = 11.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 24, 24 )
+hint_tooltip = "Reset to default color"
+mouse_default_cursor_shape = 2
+theme = ExtResource( 3 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+icon = ExtResource( 4 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[connection signal="pressed" from="." to="." method="_on_SimpleColorPickerButton_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_Reset_pressed"]

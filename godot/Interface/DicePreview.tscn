@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://dice/d20.tscn" type="PackedScene" id=1]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="d20" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.96614, -0.10834, -0.234171, 0.119188, 0.992335, 0.0326367, 0.22884, -0.059442, 0.971648, 0, 0, 0 )
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+mode = 1
+sleeping = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, -3.57628e-07, 1.62437, 1.20657 )
+fov = 58.8627
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.862709, 0.115201, 0.492404, -0.492404, 0.413176, 0.766044, -0.115201, -0.903335, 0.413176, 0, 5, 0 )

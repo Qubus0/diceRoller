@@ -1,0 +1,329 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Interface/Fonts/smaller_mono.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/MultipleDicePreview.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Shortcut.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Theme" id=41]
+default_font = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2197]
+bg_color = Color( 0.329412, 0.305882, 0.407843, 1 )
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.92549, 0.839216, 1 )
+corner_radius_bottom_left = 4
+
+[sub_resource type="Environment" id=2195]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="World" id=2196]
+environment = SubResource( 2195 )
+
+[sub_resource type="StyleBoxFlat" id=2198]
+draw_center = false
+border_width_left = 2
+border_color = Color( 1, 0.92549, 0.839216, 1 )
+corner_detail = 1
+
+[node name="Content" type="HBoxContainer"]
+margin_right = 677.0
+margin_bottom = 452.0
+mouse_filter = 2
+size_flags_vertical = 3
+theme = SubResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Preview" type="Panel" parent="."]
+margin_right = 230.0
+margin_bottom = 462.0
+rect_min_size = Vector2( 230, 0 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 2197 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Preview"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="Preview/ViewportContainer"]
+size = Vector2( 230, 462 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 2196 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Spatial" parent="Preview/ViewportContainer/Viewport" instance=ExtResource( 3 )]
+
+[node name="ColorRect" type="ColorRect" parent="Preview/ViewportContainer"]
+margin_bottom = 653.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 234.0
+margin_right = 509.0
+margin_bottom = 462.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 15
+custom_constants/margin_top = 10
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 20
+
+[node name="HelpText" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 15.0
+margin_top = 10.0
+margin_right = 260.0
+margin_bottom = 442.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/HelpText"]
+margin_right = 245.0
+margin_bottom = 37.0
+text = "A normal die
+Has completely normal physics"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HelpText"]
+margin_top = 37.0
+margin_right = 245.0
+margin_bottom = 47.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="Label2" type="Label" parent="MarginContainer/HelpText"]
+margin_top = 47.0
+margin_right = 245.0
+margin_bottom = 204.0
+text = "- Grab it
+- Drag it
+- Throw it around!
+- Randomly flick it
+- Rotate it
+- Lock it
+- Set it down
+- Delete it"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HelpText"]
+margin_top = 204.0
+margin_right = 245.0
+margin_bottom = 234.0
+mouse_filter = 2
+custom_constants/margin_top = 30
+
+[node name="Label3" type="Label" parent="MarginContainer/HelpText"]
+margin_top = 234.0
+margin_right = 245.0
+margin_bottom = 291.0
+text = "A locked die
+Stays in place
+No physics except collision"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HelpText"]
+margin_top = 291.0
+margin_right = 245.0
+margin_bottom = 301.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="Label4" type="Label" parent="MarginContainer/HelpText"]
+margin_top = 301.0
+margin_right = 245.0
+margin_bottom = 318.0
+text = "- Unlock it"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HelpText"]
+margin_top = 318.0
+margin_right = 245.0
+margin_bottom = 348.0
+mouse_filter = 2
+custom_constants/margin_top = 30
+
+[node name="Label5" type="Label" parent="MarginContainer/HelpText"]
+margin_top = 348.0
+margin_right = 245.0
+margin_bottom = 405.0
+text = "An invalid die
+Like a normal die
+(but you know it doesn’t sit right)"
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/HelpText"]
+margin_top = 405.0
+margin_right = 245.0
+margin_bottom = 415.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="Label6" type="Label" parent="MarginContainer/HelpText"]
+margin_top = 415.0
+margin_right = 245.0
+margin_bottom = 432.0
+text = "- Re-roll it if you want"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+margin_left = 513.0
+margin_right = 517.0
+margin_bottom = 462.0
+mouse_filter = 2
+custom_styles/separator = SubResource( 2198 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_left = 521.0
+margin_right = 677.0
+margin_bottom = 462.0
+mouse_filter = 2
+custom_constants/margin_right = 15
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Sortcuts" type="VBoxContainer" parent="MarginContainer2"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 141.0
+margin_bottom = 452.0
+mouse_filter = 2
+custom_constants/separation = 0
+
+[node name="Heading" type="Label" parent="MarginContainer2/Sortcuts"]
+margin_right = 131.0
+margin_bottom = 37.0
+text = "Control
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 37.0
+margin_right = 131.0
+margin_bottom = 47.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="NormalShortcuts" type="VBoxContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 47.0
+margin_right = 131.0
+margin_bottom = 204.0
+mouse_filter = 2
+custom_constants/separation = 3
+
+[node name="ShortcutGrab" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_right = 131.0
+mouse_filter = 2
+shortcut = "[lmb]"
+
+[node name="ShortcutDrag" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 20.0
+margin_right = 131.0
+margin_bottom = 37.0
+mouse_filter = 2
+shortcut = "[lmb]+ Move"
+
+[node name="ShortcutThrow" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 40.0
+margin_right = 131.0
+margin_bottom = 57.0
+mouse_filter = 2
+shortcut = "[lmb]+ Move + Release"
+
+[node name="ShortcutRandomRoll2" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 60.0
+margin_right = 131.0
+margin_bottom = 77.0
+mouse_filter = 2
+shortcut = "[lmb]x2/[key=W]/[key=↑]"
+
+[node name="ShortcutRotate" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 80.0
+margin_right = 131.0
+margin_bottom = 97.0
+mouse_filter = 2
+shortcut = "[lmb]+[key=A][key=D]/[key=←][key=→]"
+
+[node name="ShortcutLock" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 100.0
+margin_right = 131.0
+margin_bottom = 117.0
+mouse_filter = 2
+shortcut = "[lmb]/[key=S]/[key=↓]"
+
+[node name="ShortcutPutDown" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 120.0
+margin_right = 131.0
+margin_bottom = 137.0
+mouse_filter = 2
+shortcut = "Drag +[rmb]/[key=S]/[key=↓]"
+
+[node name="ShortcutDelete" parent="MarginContainer2/Sortcuts/NormalShortcuts" instance=ExtResource( 7 )]
+margin_top = 140.0
+margin_right = 131.0
+margin_bottom = 157.0
+mouse_filter = 2
+shortcut = "Hover + [key=Delete]"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 204.0
+margin_right = 131.0
+margin_bottom = 234.0
+mouse_filter = 2
+custom_constants/margin_top = 30
+
+[node name="Label3" type="Label" parent="MarginContainer2/Sortcuts"]
+margin_top = 234.0
+margin_right = 131.0
+margin_bottom = 291.0
+text = "
+
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 291.0
+margin_right = 131.0
+margin_bottom = 301.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="ShortcutLock2" parent="MarginContainer2/Sortcuts" instance=ExtResource( 7 )]
+margin_top = 301.0
+margin_right = 131.0
+margin_bottom = 318.0
+mouse_filter = 2
+shortcut = "[lmb]/[key=S]/[key=↓]"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 318.0
+margin_right = 131.0
+margin_bottom = 348.0
+mouse_filter = 2
+custom_constants/margin_top = 30
+
+[node name="Label5" type="Label" parent="MarginContainer2/Sortcuts"]
+margin_top = 348.0
+margin_right = 131.0
+margin_bottom = 405.0
+text = "
+
+"
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer2/Sortcuts"]
+margin_top = 405.0
+margin_right = 131.0
+margin_bottom = 415.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+
+[node name="ShortcutRandomRoll3" parent="MarginContainer2/Sortcuts" instance=ExtResource( 7 )]
+margin_top = 415.0
+margin_right = 131.0
+margin_bottom = 432.0
+mouse_filter = 2
+shortcut = "[lmb]x2/[key=W]/[key=↑]"

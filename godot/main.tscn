@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://dice/d6.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
@@ -9,32 +9,39 @@
 [ext_resource path="res://dice/d12.tscn" type="PackedScene" id=7]
 [ext_resource path="res://dice/d4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dice/d8.tscn" type="PackedScene" id=9]
+[ext_resource path="res://dice/materials/outline.shader" type="Shader" id=10]
+[ext_resource path="res://World/DiceInteractions.gd" type="Script" id=11]
+[ext_resource path="res://World/DiceManager.gd" type="Script" id=12]
 
 [sub_resource type="PhysicsMaterial" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 50, 0.2, 50 )
 
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.388235, 0.388235, 0.388235, 1 )
+[sub_resource type="SpatialMaterial" id=7]
+flags_unshaded = true
+albedo_color = Color( 0.329412, 0.305882, 0.407843, 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = ExtResource( 10 )
+shader_param/enabled = true
+shader_param/border_width = 0.01
+shader_param/border_color = Color( 0.552941, 0.411765, 0.478431, 1 )
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 25, 1, 25 )
 
-[sub_resource type="Curve3D" id=5]
-_data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -14.9054, 37.2808, 0.000106812, 0, 0, 0, 0, 0, 0, -0.000216946, 0.000108479, 0 ),
-"tilts": PoolRealArray( 0, 0 )
-}
+[sub_resource type="SphereShape" id=9]
+radius = 1.2
+
+[sub_resource type="SphereShape" id=10]
+radius = 2.0
+
+[sub_resource type="SphereShape" id=11]
+radius = 8.0
 
 [node name="main" type="Spatial"]
 script = ExtResource( 2 )
-d4 = ExtResource( 8 )
-d6 = ExtResource( 1 )
-d8 = ExtResource( 9 )
-d10 = ExtResource( 6 )
-d12 = ExtResource( 7 )
-d20 = ExtResource( 5 )
 
 [node name="Interface" parent="." instance=ExtResource( 4 )]
 
@@ -45,48 +52,114 @@ __meta__ = {
 }
 
 [node name="Floor" type="StaticBody" parent="Box"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Box/Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0725222, -0.0999988, -0.0307655 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+cast_shadow = 0
 mesh = SubResource( 2 )
-material/0 = SubResource( 6 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 7 )
+
+[node name="Border" type="MeshInstance" parent="Box/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+cast_shadow = 0
+mesh = SubResource( 2 )
+software_skinning_transform_normals = false
+material/0 = SubResource( 8 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Box/Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
 shape = SubResource( 4 )
 
-[node name="Roof" type="StaticBody" parent="Box"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+[node name="OtherBoxSides" type="Spatial" parent="Box"]
 
-[node name="CollisionShape" type="CollisionShape" parent="Box/Roof"]
+[node name="Roof" type="StaticBody" parent="Box/OtherBoxSides"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+input_ray_pickable = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Box/OtherBoxSides/Roof"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
 shape = SubResource( 4 )
 
-[node name="Wall-z" parent="Box" instance=ExtResource( 3 )]
+[node name="Wall-z" parent="Box/OtherBoxSides" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25 )
 
-[node name="Wall+z" parent="Box" instance=ExtResource( 3 )]
+[node name="Wall+z" parent="Box/OtherBoxSides" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25 )
 
-[node name="Wall-x" parent="Box" instance=ExtResource( 3 )]
+[node name="Wall-x" parent="Box/OtherBoxSides" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 0, 0 )
 
-[node name="Wall+x" parent="Box" instance=ExtResource( 3 )]
+[node name="Wall+x" parent="Box/OtherBoxSides" instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 0, 0 )
 
-[node name="AllDice" type="Node2D" parent="."]
+[node name="ResizeTicks" type="Timer" parent="Box"]
+wait_time = 0.15
+
+[node name="DiceManager" type="Spatial" parent="."]
+script = ExtResource( 12 )
+dice_type_strings = PoolStringArray( "d4", "d6", "d8", "d10", "d12", "d20" )
+dice_type_scenes = {
+"d10": ExtResource( 6 ),
+"d12": ExtResource( 7 ),
+"d20": ExtResource( 5 ),
+"d4": ExtResource( 8 ),
+"d6": ExtResource( 1 ),
+"d8": ExtResource( 9 )
+}
+
+[node name="DiceInteractions" type="Spatial" parent="."]
+script = ExtResource( 11 )
+
+[node name="RotateTicks" type="Timer" parent="DiceInteractions"]
+wait_time = 0.2
+
+[node name="MinDistance" type="Area" parent="DiceInteractions"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="DiceInteractions/MinDistance"]
+shape = SubResource( 9 )
+
+[node name="MaxDistance" type="Area" parent="DiceInteractions/MinDistance"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="DiceInteractions/MinDistance/MaxDistance"]
+shape = SubResource( 10 )
+
+[node name="GrabArea" type="Area" parent="DiceInteractions"]
+collision_layer = 0
+collision_mask = 2
+gravity_point = true
+gravity_vec = Vector3( 0, 0, 0 )
+gravity = 100.0
+linear_damp = 10.0
+angular_damp = 20.0
+
+[node name="CollisionShape" type="CollisionShape" parent="DiceInteractions/GrabArea"]
+shape = SubResource( 11 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.44797, 0.873044, -0.192659, -0.465221, 0.411644, 0.783657, 0.763474, -0.261426, 0.590562, 0, 5.29376, 0 )
+transform = Transform( 0.403317, 0.888258, -0.219846, -0.492404, 0.413176, 0.766044, 0.771281, -0.200706, 0.604023, 0, 5, 0 )
 
-[node name="Path" type="Path" parent="."]
-curve = SubResource( 5 )
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 7, 2.7 )
+current = true
 
-[node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 0.999998, -0.00223915, -1.37981e-06, 0.00223915, 0.999998, -4.4668e-06, 1.38981e-06, 4.4637e-06, 1, -2.7153, 6.79105, 1.94566e-05 )
-offset = 32.82
-rotation_mode = 0
+[node name="ZoomTicks" type="Timer" parent="Camera"]
+wait_time = 0.15
 
-[node name="Camera" type="Camera" parent="Path/PathFollow"]
-transform = Transform( -4.37117e-08, 0.965925, -0.258819, 0, 0.258819, 0.965925, 1, 4.22217e-08, -1.13118e-08, 0, 0, 0 )
+[connection signal="add_die" from="Interface" to="DiceManager" method="_on_Interface_add_die"]
+[connection signal="area_resized" from="Interface" to="." method="_on_Interface_area_resized"]
+[connection signal="camera_zoomed" from="Interface" to="." method="_on_Interface_camera_zoomed"]
+[connection signal="clear_dice" from="Interface" to="DiceManager" method="_on_Interface_clear_dice"]
+[connection signal="lock_valid" from="Interface" to="DiceManager" method="_on_Interface_lock_valid"]
+[connection signal="roll_all" from="Interface" to="DiceManager" method="_on_Interface_roll_all"]
+[connection signal="roll_invalid" from="Interface" to="DiceManager" method="_on_Interface_roll_invalid"]
+[connection signal="timeout" from="Box/ResizeTicks" to="." method="_on_ResizeTicks_timeout"]
+[connection signal="timeout" from="DiceInteractions/RotateTicks" to="DiceInteractions" method="_on_RotateTicks_timeout"]
+[connection signal="timeout" from="Camera/ZoomTicks" to="." method="_on_ZoomTicks_timeout"]

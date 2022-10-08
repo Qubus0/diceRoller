@@ -4,5 +4,6 @@
 
 [resource]
 shader = ExtResource( 1 )
+shader_param/enabled = true
 shader_param/border_width = 0.1
-shader_param/border_color = Color( 1, 0, 0, 1 )
+shader_param/border_color = Color( 1, 0.768627, 0.564706, 1 )

@@ -1,0 +1,525 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Interface/Icons/foldin.png" type="Texture" id=1]
+[ext_resource path="res://Interface/Themes/statistics_theme.tres" type="Theme" id=2]
+[ext_resource path="res://Interface/Icons/d20.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Icons/foldout.png" type="Texture" id=4]
+[ext_resource path="res://Interface/Fonts/smaller_mono.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Interface/Icons/sum.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Themes/default_theme.tres" type="Theme" id=7]
+
+[node name="StatisticsHelp" type="HBoxContainer"]
+margin_right = 442.0
+margin_bottom = 270.0
+mouse_filter = 2
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_right = 253.0
+margin_bottom = 270.0
+mouse_filter = 2
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="InconButtons" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 233.0
+margin_bottom = 250.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/InconButtons"]
+margin_right = 213.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/InconButtons/VBoxContainer"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 13.0
+margin_right = 213.0
+margin_bottom = 27.0
+text = "Sum of all dice on the field"
+align = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/InconButtons"]
+margin_top = 44.0
+margin_right = 213.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 0, 40 )
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/InconButtons/VBoxContainer2"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 4.0
+margin_right = 213.0
+margin_bottom = 35.0
+text = "Statistics for one Dice Type
+Amount on the field"
+align = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/InconButtons"]
+margin_top = 88.0
+margin_right = 213.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 0, 30 )
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/InconButtons/VBoxContainer3"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 8.0
+margin_right = 213.0
+margin_bottom = 22.0
+text = "Sum of all dice on the field"
+align = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/InconButtons"]
+margin_top = 122.0
+margin_right = 213.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 0, 25 )
+mouse_filter = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/InconButtons/VBoxContainer4"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 38.0
+margin_right = 213.0
+margin_bottom = 69.0
+text = "Amount of dice showing this side
+Invalid dice [ ? ] do not count"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+margin_left = 257.0
+margin_right = 442.0
+margin_bottom = 270.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 165.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 145, 230 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 9
+size_flags_stretch_ratio = 0.9
+theme = ExtResource( 7 )
+follow_focus = true
+scroll_horizontal_enabled = false
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer2/ScrollContainer"]
+margin_right = 145.0
+margin_bottom = 230.0
+grow_horizontal = 0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="TotalStatistic" type="VBoxContainer" parent="MarginContainer2/ScrollContainer/Container"]
+margin_right = 145.0
+margin_bottom = 50.0
+mouse_filter = 2
+
+[node name="Genral" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic"]
+margin_right = 145.0
+margin_bottom = 42.0
+mouse_filter = 2
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+
+[node name="Grid" type="GridContainer" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic/Genral"]
+margin_top = 10.0
+margin_right = 145.0
+margin_bottom = 32.0
+grow_horizontal = 0
+mouse_filter = 2
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sum" type="Label" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic/Genral/Grid"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 70.0
+margin_bottom = 22.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "8"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeContainer" type="AspectRatioContainer" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic/Genral/Grid"]
+modulate = Color( 1, 0.768627, 0.564706, 1 )
+margin_left = 74.0
+margin_right = 144.0
+margin_bottom = 22.0
+mouse_filter = 2
+size_flags_horizontal = 3
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="TypeIcon" type="TextureRect" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic/Genral/Grid/TypeContainer"]
+margin_left = 48.0
+margin_right = 70.0
+margin_bottom = 22.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer2/ScrollContainer/Container/TotalStatistic"]
+margin_top = 46.0
+margin_right = 145.0
+margin_bottom = 50.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/ScrollContainer/Container"]
+margin_top = 54.0
+margin_right = 145.0
+margin_bottom = 227.0
+mouse_filter = 2
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Genral" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer"]
+margin_right = 145.0
+margin_bottom = 69.0
+mouse_filter = 2
+custom_constants/margin_top = 5
+custom_constants/margin_bottom = 5
+
+[node name="Grid" type="GridContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral"]
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 64.0
+grow_horizontal = 0
+mouse_filter = 2
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid"]
+margin_right = 70.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 4
+
+[node name="Total" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid/Margin"]
+modulate = Color( 1, 0.768627, 0.564706, 1 )
+margin_top = 4.0
+margin_right = 70.0
+margin_bottom = 21.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 5 )
+text = "5 x"
+align = 2
+valign = 1
+
+[node name="TypeContainer" type="AspectRatioContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid"]
+modulate = Color( 1, 0.768627, 0.564706, 1 )
+margin_left = 74.0
+margin_right = 144.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="TypeIcon" type="TextureRect" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid/TypeContainer"]
+margin_left = 45.0
+margin_right = 70.0
+margin_bottom = 25.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Margin2" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid"]
+margin_top = 29.0
+margin_right = 70.0
+margin_bottom = 59.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_top = 4
+custom_constants/margin_bottom = 4
+
+[node name="Sum" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid/Margin2"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 4.0
+margin_right = 70.0
+margin_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "8"
+align = 2
+valign = 1
+
+[node name="FoldMargin" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid"]
+margin_left = 74.0
+margin_top = 29.0
+margin_right = 144.0
+margin_bottom = 59.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/margin_right = 2
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="FoldContainer" type="AspectRatioContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid/FoldMargin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 68.0
+margin_bottom = 25.0
+mouse_filter = 2
+stretch_mode = 1
+alignment_horizontal = 2
+
+[node name="FoldButton" type="TextureButton" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Genral/Grid/FoldMargin/FoldContainer"]
+self_modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_left = 43.0
+margin_right = 63.0
+margin_bottom = 20.0
+mouse_filter = 2
+mouse_default_cursor_shape = 2
+toggle_mode = true
+pressed = true
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="Sides" type="MarginContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer"]
+margin_top = 73.0
+margin_right = 145.0
+margin_bottom = 173.0
+mouse_filter = 2
+
+[node name="Grid" type="GridContainer" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides"]
+margin_right = 145.0
+margin_bottom = 100.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 2
+__meta__ = {
+"_editor_description_": "A grid with two colums is better than nested v/h-boxes. A wider label will expand the whole column and not just one row, leading to better alignment."
+}
+
+[node name="count" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_right = 72.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "1"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="side" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_left = 72.0
+margin_right = 144.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "[?]"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="count2" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_top = 25.0
+margin_right = 72.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="Panel" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid/count2"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="side2" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_left = 72.0
+margin_top = 25.0
+margin_right = 144.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "[1]"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="Panel" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid/side2"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="count3" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_top = 50.0
+margin_right = 72.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "4"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="side3" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_left = 72.0
+margin_top = 50.0
+margin_right = 144.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "[2]"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="count4" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_top = 75.0
+margin_right = 72.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "And so on"
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="Panel" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid/count4"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="side4" type="Label" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid"]
+margin_left = 72.0
+margin_top = 75.0
+margin_right = 144.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 40, 25 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+text = "..."
+align = 2
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Background" type="Panel" parent="MarginContainer2/ScrollContainer/Container/VBoxContainer/Sides/Grid/side4"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}

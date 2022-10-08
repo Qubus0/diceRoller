@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interface/Themes/button_prompt_theme.tres" type="Theme" id=1]
+
+[node name="KeyInput" type="Label"]
+margin_right = 18.0
+margin_bottom = 14.0
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
