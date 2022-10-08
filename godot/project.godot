@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "RigidBody",
 "class": "Die",
 "language": "GDScript",
-"path": "res://dice/scripts/AbstractDie.gd"
+"path": "res://dice/scripts/abstractDie.gd"
 }, {
 "base": "Node",
 "class": "DieTypeData",
@@ -36,7 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CheckToggle": "",
-"Die": "res://dice/scripts/AbstractDie.gd",
+"Die": "",
 "DieTypeData": "",
 "DieTypeStatistic": "",
 "SimpleColorPickerButton": ""
