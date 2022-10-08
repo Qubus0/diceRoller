@@ -1,11 +1,37 @@
-extends TextureButton
+extends HBoxContainer
 
-export (String) var type
-signal max_dice
+var type: String setget set_type
 
-func _ready() -> void:
-	group = preload('res://Interface/TypeRadioGroup.tres')
+signal add_dice(type, amount)
+signal remove_dice(type)
 
-func _on_DiceMax_text_changed(max_value: String) -> void:
-	if int(max_value) or max_value == '':
-		emit_signal('max_dice', type, int(max_value))
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action('clear') and get_focus_owner() == $NumberInput:
+		get_tree().set_input_as_handled()
+		emit_signal('remove_dice', type)
+
+
+func set_type(new_type: String) -> void:
+	type = new_type
+	var icon: StreamTexture = load('res://Interface/Icons/%s.png' % type)
+	if not icon:
+		push_warning('No icon texture could be found at res://Interface/Icons/%s.png' % type)
+		return
+	$IconAspect/DiceIcon/Icon.texture = icon
+	$IconAspect/DiceIcon.hint_tooltip = 'Dice type (%s)' % new_type
+
+
+func _on_DiceAdd_pressed() -> void:
+	emit_signal('add_dice', type, $NumberInput.get_number())
+
+
+func _on_NumberInput_text_entered(_new_text: String) -> void:
+	emit_signal('add_dice', type, $NumberInput.get_number())
+
+
+func _on_DiceClear_pressed() -> void:
+	emit_signal('remove_dice', type)
+
+
+

@@ -1,0 +1,12 @@
+# Godot
+godot/.godot
+godot/addons/*
+godot/.import/
+*.import
+
+# IDEs
+.idea
+.vscode
+
+# OS
+.DS_Store

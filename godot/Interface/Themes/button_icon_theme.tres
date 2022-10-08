@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=2]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[resource]
+Button/colors/icon_color_focus = Color( 1, 0.768627, 0.564706, 1 )
+Button/colors/icon_color_hover = Color( 1, 0.768627, 0.564706, 1 )
+Button/colors/icon_color_normal = Color( 1, 0.92549, 0.839216, 1 )
+Button/colors/icon_color_pressed = Color( 1, 0.92549, 0.839216, 1 )
+Button/constants/hseparation = 0
+Button/styles/disabled = SubResource( 1 )
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = SubResource( 1 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 1 )

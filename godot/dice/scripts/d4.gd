@@ -1,6 +1,6 @@
 extends Die
 
-func _ready() -> void:
+func _init() -> void:
 	max_side_height_difference = .6
 	sides = {
 		1: -Vector3(0.471405, 0.333333, 0.816496),

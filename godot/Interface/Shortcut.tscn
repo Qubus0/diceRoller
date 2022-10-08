@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Interface/Scripts/Shortcut.gd" type="Script" id=5]
+
+[node name="Shortcut" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 0, 17 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+shortcut = "[key=Shift]"

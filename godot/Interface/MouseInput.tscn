@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Interface/Icons/mouse-lmb.png" type="Texture" id=1]
+[ext_resource path="res://Interface/Icons/mouse.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Icons/mouse-rmb.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Scripts/MouseInput.gd" type="Script" id=4]
+
+[node name="MouseInput" type="AspectRatioContainer"]
+margin_right = 15.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 15, 0 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mouse" type="TextureRect" parent="."]
+self_modulate = Color( 0.66, 0.66, 0.66, 1 )
+margin_top = 0.5
+margin_right = 15.0
+margin_bottom = 15.5
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Left" type="TextureRect" parent="."]
+self_modulate = Color( 0.66, 0.66, 0.66, 1 )
+margin_top = 0.5
+margin_right = 15.0
+margin_bottom = 15.5
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="Right" type="TextureRect" parent="."]
+self_modulate = Color( 0.66, 0.66, 0.66, 1 )
+margin_top = 0.5
+margin_right = 15.0
+margin_bottom = 15.5
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6

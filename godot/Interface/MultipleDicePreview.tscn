@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://dice/d20.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dice/d12.tscn" type="PackedScene" id=2]
+[ext_resource path="res://dice/d6.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Scripts/MultipleDicePreview.gd" type="Script" id=4]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="d20" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.979912, 0.0105032, -0.199154, 0.0346847, 0.974418, 0.222051, 0.196391, -0.224498, 0.95448, -0.418905, 2.72977, 1.25231 )
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+mode = 1
+sleeping = true
+
+[node name="d12" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.340656, 0.881419, 0.327192, -0.155903, 0.396146, -0.904855, -0.927172, 0.257234, 0.272365, 0.76211, 1.17628, 3.01371 )
+sleeping = true
+
+[node name="d6" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.549472, -0.758374, 0.350641, 0.352216, 0.590808, 0.725872, -0.757644, -0.275344, 0.591744, -0.476795, 0.396661, 5.24776 )
+sleeping = true
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 8.5, 5 )
+fov = 58.8627
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.862709, 0.115201, 0.492404, -0.492404, 0.413176, 0.766044, -0.115201, -0.903335, 0.413176, 0, 5, 0 )

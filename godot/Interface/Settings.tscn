@@ -1,0 +1,293 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Interface/Scripts/Settings.gd" type="Script" id=1]
+[ext_resource path="res://Interface/DicePreview.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interface/Icons/github.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Themes/button_primary_theme.tres" type="Theme" id=4]
+[ext_resource path="res://Interface/Themes/default_theme.tres" type="Theme" id=5]
+[ext_resource path="res://Interface/Icons/close.png" type="Texture" id=6]
+[ext_resource path="res://Interface/CheckToggle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Interface/SimpleColorPickerButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Interface/Themes/button_icon_theme.tres" type="Theme" id=9]
+
+[sub_resource type="Environment" id=2195]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="World" id=2196]
+environment = SubResource( 2195 )
+
+[sub_resource type="StyleBoxEmpty" id=2197]
+
+[node name="Settings" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 5 )
+color = Color( 0.129412, 0.239216, 0.341176, 0.501961 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -189.5
+margin_top = -283.0
+margin_right = 189.5
+margin_bottom = 283.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="Panel/Margin"]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 369.0
+margin_bottom = 536.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiceTheme" type="VBoxContainer" parent="Panel/Margin/Layout"]
+margin_right = 359.0
+margin_bottom = 276.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+alignment = 2
+
+[node name="Preview" type="ViewportContainer" parent="Panel/Margin/Layout/DiceTheme"]
+margin_right = 359.0
+margin_bottom = 233.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="Panel/Margin/Layout/DiceTheme/Preview"]
+size = Vector2( 359, 233 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 2196 )
+transparent_bg = true
+handle_input_locally = false
+usage = 3
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Spatial" parent="Panel/Margin/Layout/DiceTheme/Preview/Viewport" instance=ExtResource( 2 )]
+
+[node name="Viewport2" type="Viewport" parent="Panel/Margin/Layout/DiceTheme/Preview"]
+size = Vector2( 359, 233 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 2196 )
+transparent_bg = true
+handle_input_locally = false
+usage = 3
+render_target_update_mode = 3
+gui_disable_input = true
+
+[node name="Spatial" parent="Panel/Margin/Layout/DiceTheme/Preview/Viewport2" instance=ExtResource( 2 )]
+
+[node name="ColorPickers" type="HBoxContainer" parent="Panel/Margin/Layout/DiceTheme"]
+margin_top = 237.0
+margin_right = 359.0
+margin_bottom = 276.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="SpacerBegin" type="MarginContainer" parent="Panel/Margin/Layout/DiceTheme/ColorPickers"]
+margin_right = 62.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+
+[node name="Container1" type="AspectRatioContainer" parent="Panel/Margin/Layout/DiceTheme/ColorPickers"]
+margin_left = 82.0
+margin_right = 133.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Body" parent="Panel/Margin/Layout/DiceTheme/ColorPickers/Container1" instance=ExtResource( 8 )]
+margin_left = 6.0
+margin_right = 45.0
+margin_bottom = 39.0
+hint_tooltip = "Change the dice color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 0.0745098, 0.145098, 0.207843, 1 )
+
+[node name="Container2" type="AspectRatioContainer" parent="Panel/Margin/Layout/DiceTheme/ColorPickers"]
+margin_left = 153.0
+margin_right = 205.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Numbers" parent="Panel/Margin/Layout/DiceTheme/ColorPickers/Container2" instance=ExtResource( 8 )]
+margin_left = 6.5
+margin_right = 45.5
+margin_bottom = 39.0
+hint_tooltip = "Change the number color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 1, 0.92549, 0.839216, 1 )
+
+[node name="Container3" type="AspectRatioContainer" parent="Panel/Margin/Layout/DiceTheme/ColorPickers"]
+margin_left = 225.0
+margin_right = 277.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Border" parent="Panel/Margin/Layout/DiceTheme/ColorPickers/Container3" instance=ExtResource( 8 )]
+margin_left = 6.5
+margin_right = 45.5
+margin_bottom = 39.0
+hint_tooltip = "Change the outline color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 1, 0.768627, 0.564706, 1 )
+
+[node name="SpacerEnd" type="MarginContainer" parent="Panel/Margin/Layout/DiceTheme/ColorPickers"]
+margin_left = 297.0
+margin_right = 359.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Margin/Layout"]
+margin_top = 280.0
+margin_right = 359.0
+margin_bottom = 330.0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Panel/Margin/Layout"]
+margin_top = 334.0
+margin_right = 359.0
+margin_bottom = 384.0
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/Margin/Layout/VBoxContainer"]
+margin_left = 75.0
+margin_right = 283.0
+margin_bottom = 50.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 40
+columns = 2
+
+[node name="Scroll" parent="Panel/Margin/Layout/VBoxContainer/GridContainer" instance=ExtResource( 7 )]
+custom_styles/panel = SubResource( 2197 )
+
+[node name="Label" type="Label" parent="Panel/Margin/Layout/VBoxContainer/GridContainer"]
+margin_left = 80.0
+margin_top = 1.0
+margin_right = 208.0
+margin_bottom = 19.0
+text = "Invert Zoom Scroll"
+
+[node name="Resize" parent="Panel/Margin/Layout/VBoxContainer/GridContainer" instance=ExtResource( 7 )]
+margin_top = 30.0
+margin_bottom = 50.0
+custom_styles/panel = SubResource( 2197 )
+
+[node name="Label2" type="Label" parent="Panel/Margin/Layout/VBoxContainer/GridContainer"]
+margin_left = 80.0
+margin_top = 31.0
+margin_right = 208.0
+margin_bottom = 49.0
+text = "Invert Resize Scroll"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/Margin/Layout"]
+margin_top = 388.0
+margin_right = 359.0
+margin_bottom = 438.0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+
+[node name="CollabButtons" type="MarginContainer" parent="Panel/Margin/Layout"]
+margin_top = 442.0
+margin_right = 359.0
+margin_bottom = 516.0
+custom_constants/margin_right = 50
+custom_constants/margin_left = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Margin/Layout/CollabButtons"]
+margin_left = 50.0
+margin_right = 309.0
+margin_bottom = 74.0
+size_flags_vertical = 3
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Github" type="Button" parent="Panel/Margin/Layout/CollabButtons/VBoxContainer"]
+margin_right = 259.0
+margin_bottom = 38.0
+hint_tooltip = "I welcome all types of contribution!"
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+theme = ExtResource( 4 )
+text = "Contribute"
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="FeatureRequest" type="Button" parent="Panel/Margin/Layout/CollabButtons/VBoxContainer"]
+margin_top = 46.0
+margin_right = 259.0
+margin_bottom = 74.0
+hint_tooltip = "Also good for bug reports!"
+mouse_default_cursor_shape = 2
+text = "Request a Feature"
+icon = ExtResource( 3 )
+expand_icon = true
+
+[node name="CloseMargin" type="MarginContainer" parent="Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="Button" parent="Panel/CloseMargin"]
+margin_top = 15.0
+margin_right = 35.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 30, 30 )
+mouse_default_cursor_shape = 2
+theme = ExtResource( 9 )
+icon = ExtResource( 6 )
+flat = true
+expand_icon = true
+
+[connection signal="gui_input" from="." to="." method="_on_Settings_gui_input"]
+[connection signal="color_changed" from="Panel/Margin/Layout/DiceTheme/ColorPickers/Container1/Body" to="." method="_on_Body_color_changed"]
+[connection signal="color_changed" from="Panel/Margin/Layout/DiceTheme/ColorPickers/Container2/Numbers" to="." method="_on_Numbers_color_changed"]
+[connection signal="color_changed" from="Panel/Margin/Layout/DiceTheme/ColorPickers/Container3/Border" to="." method="_on_Border_color_changed"]
+[connection signal="pressed" from="Panel/Margin/Layout/CollabButtons/VBoxContainer/Github" to="." method="_on_Github_pressed"]
+[connection signal="pressed" from="Panel/Margin/Layout/CollabButtons/VBoxContainer/FeatureRequest" to="." method="_on_FeatureRequest_pressed"]
+[connection signal="pressed" from="Panel/CloseMargin/Close" to="." method="_on_Close_pressed"]

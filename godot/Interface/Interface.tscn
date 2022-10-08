@@ -1,69 +1,24 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://Interface/dice/d10.png" type="Texture" id=1]
-[ext_resource path="res://Interface/default_theme.tres" type="Theme" id=2]
-[ext_resource path="res://Interface/help.png" type="Texture" id=3]
-[ext_resource path="res://Interface/scripts/Interface.gd" type="Script" id=4]
-[ext_resource path="res://Interface/dice/d12.png" type="Texture" id=5]
-[ext_resource path="res://Interface/dice/d4.png" type="Texture" id=6]
-[ext_resource path="res://Interface/dice/d8.png" type="Texture" id=7]
-[ext_resource path="res://Interface/dice/d20.png" type="Texture" id=8]
-[ext_resource path="res://Interface/DiceSelect.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Interface/dice/d8selected.png" type="Texture" id=10]
-[ext_resource path="res://Interface/dice/d10selected.png" type="Texture" id=11]
-[ext_resource path="res://Interface/dice/d12selected.png" type="Texture" id=12]
-[ext_resource path="res://Interface/dice/d6selected.png" type="Texture" id=13]
-[ext_resource path="res://Interface/dice/d4selected.png" type="Texture" id=14]
-[ext_resource path="res://Interface/dice/d20selected.png" type="Texture" id=15]
-[ext_resource path="res://Interface/font/monospace.tres" type="DynamicFont" id=16]
-
-[sub_resource type="InputEventAction" id=1]
-action = "select_d4"
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
-
-[sub_resource type="ButtonGroup" id=3]
-
-[sub_resource type="InputEventAction" id=4]
-action = "select_d6"
-
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
-
-[sub_resource type="ButtonGroup" id=6]
-
-[sub_resource type="InputEventAction" id=7]
-action = "select_d8"
-
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
-
-[sub_resource type="ButtonGroup" id=9]
-
-[sub_resource type="InputEventAction" id=10]
-action = "select_d10"
-
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 10 )
-
-[sub_resource type="ButtonGroup" id=12]
-
-[sub_resource type="InputEventAction" id=13]
-action = "select_d12"
-
-[sub_resource type="ShortCut" id=14]
-shortcut = SubResource( 13 )
-
-[sub_resource type="ButtonGroup" id=15]
-
-[sub_resource type="InputEventAction" id=16]
-action = "select_d20"
-
-[sub_resource type="ShortCut" id=17]
-shortcut = SubResource( 16 )
-
-[sub_resource type="ButtonGroup" id=18]
+[ext_resource path="res://Interface/Icons/d6.png" type="Texture" id=1]
+[ext_resource path="res://Interface/Statistics.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interface/Icons/question.png" type="Texture" id=3]
+[ext_resource path="res://Interface/Scripts/Interface.gd" type="Script" id=4]
+[ext_resource path="res://Interface/Icons/clear.png" type="Texture" id=5]
+[ext_resource path="res://Interface/Icons/unlocked.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Icons/roll.png" type="Texture" id=7]
+[ext_resource path="res://Interface/Settings.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Interface/Themes/button_icon_theme.tres" type="Theme" id=9]
+[ext_resource path="res://Interface/Scripts/FitContentContainer.gd" type="Script" id=10]
+[ext_resource path="res://Interface/Themes/button_primary_theme.tres" type="Theme" id=11]
+[ext_resource path="res://Interface/Themes/default_theme.tres" type="Theme" id=12]
+[ext_resource path="res://Interface/Icons/zoomin.png" type="Texture" id=13]
+[ext_resource path="res://Interface/Icons/zoomout.png" type="Texture" id=14]
+[ext_resource path="res://Interface/Icons/sizeup.png" type="Texture" id=15]
+[ext_resource path="res://Interface/Icons/sizedown.png" type="Texture" id=16]
+[ext_resource path="res://Interface/Scripts/LockValidDiceButton.gd" type="Script" id=17]
+[ext_resource path="res://Interface/Icons/settings.png" type="Texture" id=18]
+[ext_resource path="res://Interface/Help.tscn" type="PackedScene" id=19]
 
 [sub_resource type="InputEventAction" id=19]
 action = "add_die"
@@ -71,17 +26,23 @@ action = "add_die"
 [sub_resource type="ShortCut" id=20]
 shortcut = SubResource( 19 )
 
-[sub_resource type="InputEventAction" id=21]
-action = "add_max"
+[sub_resource type="InputEventAction" id=29]
+action = "clear"
 
-[sub_resource type="ShortCut" id=22]
-shortcut = SubResource( 21 )
+[sub_resource type="ShortCut" id=30]
+shortcut = SubResource( 29 )
 
 [sub_resource type="InputEventKey" id=23]
 scancode = 32
 
 [sub_resource type="ShortCut" id=24]
 shortcut = SubResource( 23 )
+
+[sub_resource type="InputEventAction" id=27]
+action = "lock_dice"
+
+[sub_resource type="ShortCut" id=28]
+shortcut = SubResource( 27 )
 
 [sub_resource type="InputEventKey" id=25]
 shift = true
@@ -90,385 +51,407 @@ scancode = 32
 [sub_resource type="ShortCut" id=26]
 shortcut = SubResource( 25 )
 
-[sub_resource type="InputEventAction" id=27]
-action = "lock_dice"
+[sub_resource type="InputEventAction" id=31]
+action = "zoom_in"
 
-[sub_resource type="ShortCut" id=28]
-shortcut = SubResource( 27 )
+[sub_resource type="ShortCut" id=32]
+shortcut = SubResource( 31 )
 
-[sub_resource type="InputEventAction" id=29]
-action = "clear"
+[sub_resource type="InputEventAction" id=33]
+action = "zoom_out"
 
-[sub_resource type="ShortCut" id=30]
-shortcut = SubResource( 29 )
+[sub_resource type="ShortCut" id=34]
+shortcut = SubResource( 33 )
 
-[sub_resource type="StyleBoxFlat" id=31]
-bg_color = Color( 0.14902, 0.172549, 0.231373, 0.482353 )
-corner_detail = 2
-anti_aliasing = false
+[sub_resource type="InputEventAction" id=35]
+action = "size_up"
+
+[sub_resource type="ShortCut" id=36]
+shortcut = SubResource( 35 )
+
+[sub_resource type="InputEventAction" id=37]
+action = "size_down"
+
+[sub_resource type="ShortCut" id=38]
+shortcut = SubResource( 37 )
 
 [node name="Interface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.23309
-margin_top = 1.06665
-margin_right = -1.23315
-margin_bottom = 1.06665
 mouse_filter = 2
-theme = ExtResource( 2 )
+theme = ExtResource( 12 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="d4" parent="." instance=ExtResource( 9 )]
-margin_left = 41.2331
-margin_top = 22.9333
-margin_right = 101.233
-margin_bottom = 82.9333
-hint_tooltip = "(1)"
-shortcut = SubResource( 2 )
-group = SubResource( 3 )
-texture_normal = ExtResource( 6 )
-texture_pressed = ExtResource( 14 )
-type = "d4"
-
-[node name="d6" parent="." instance=ExtResource( 9 )]
-margin_left = 161.233
-margin_top = 22.9333
-margin_right = 221.233
-margin_bottom = 82.9333
-hint_tooltip = "(2)"
-shortcut = SubResource( 5 )
-group = SubResource( 6 )
-texture_pressed = ExtResource( 13 )
-type = "d6"
-
-[node name="d8" parent="." instance=ExtResource( 9 )]
-margin_left = 41.2331
-margin_top = 166.933
-margin_right = 101.233
-margin_bottom = 226.933
-hint_tooltip = "(3)"
-shortcut = SubResource( 8 )
-group = SubResource( 9 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 10 )
-type = "d8"
-
-[node name="d10" parent="." instance=ExtResource( 9 )]
-margin_left = 161.233
-margin_top = 166.933
-margin_right = 221.233
-margin_bottom = 226.933
-hint_tooltip = "(4)"
-shortcut = SubResource( 11 )
-group = SubResource( 12 )
-texture_normal = ExtResource( 1 )
-texture_pressed = ExtResource( 11 )
-type = "d10"
-
-[node name="d12" parent="." instance=ExtResource( 9 )]
-margin_left = 41.2331
-margin_top = 310.933
-margin_right = 101.233
-margin_bottom = 370.933
-hint_tooltip = "(5)"
-shortcut = SubResource( 14 )
-group = SubResource( 15 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 12 )
-type = "d12"
-
-[node name="d20" parent="." instance=ExtResource( 9 )]
-margin_left = 161.233
-margin_top = 310.933
-margin_right = 221.233
-margin_bottom = 370.933
-hint_tooltip = "(6)"
-shortcut = SubResource( 17 )
-group = SubResource( 18 )
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 15 )
-type = "d20"
-
-[node name="AddDie" type="Button" parent="."]
-anchor_left = 1.0
+[node name="Layout" type="HBoxContainer" parent="."]
 anchor_right = 1.0
-margin_left = -287.0
-margin_top = 16.0
-margin_right = -15.9999
-margin_bottom = 104.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Interactions" type="VBoxContainer" parent="Layout"]
+margin_right = 171.0
+margin_bottom = 840.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiceSelects" type="VBoxContainer" parent="Layout/Interactions"]
+margin_right = 171.0
+margin_bottom = 278.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="HBoxContainer" parent="Layout/Interactions"]
+margin_top = 282.0
+margin_right = 171.0
+margin_bottom = 840.0
+size_flags_vertical = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Layout/Interactions/Buttons"]
+margin_right = 171.0
+margin_bottom = 558.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpacerTop" type="MarginContainer" parent="Layout/Interactions/Buttons/Buttons"]
+margin_right = 171.0
+margin_bottom = 216.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="AddDie" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 226.0
+margin_right = 171.0
+margin_bottom = 264.0
 grow_horizontal = 0
-hint_tooltip = "(N)"
-focus_mode = 0
+hint_tooltip = "(N) Add one die of the same type as the last one added."
+focus_neighbour_top = NodePath("../../../DiceSelects")
+focus_neighbour_right = NodePath("../RollAll")
+focus_neighbour_bottom = NodePath("../ClearDice")
+focus_next = NodePath("../ClearDice")
+focus_previous = NodePath("../../../DiceSelects")
 mouse_default_cursor_shape = 2
+theme = ExtResource( 11 )
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
 shortcut = SubResource( 20 )
-text = "Add Die"
+text = "Add Last"
+icon = ExtResource( 1 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AddMaxDice" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -287.0
-margin_top = 112.0
-margin_right = -15.9999
-margin_bottom = 167.0
+[node name="ClearDice" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 274.0
+margin_right = 171.0
+margin_bottom = 302.0
 grow_horizontal = 0
-hint_tooltip = "(M)"
-focus_mode = 0
+hint_tooltip = "(C) Clear all dice"
+focus_neighbour_top = NodePath("../AddDie")
+focus_neighbour_bottom = NodePath("../RollAll")
+focus_next = NodePath("../RollAll")
+focus_previous = NodePath("../AddDie")
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
-shortcut = SubResource( 22 )
-text = "Add Max Amount"
+shortcut = SubResource( 30 )
+text = "Clear Dice"
+icon = ExtResource( 5 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Roll" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -287.0
-margin_top = 239.0
-margin_right = -14.9999
-margin_bottom = 334.0
-grow_horizontal = 0
-hint_tooltip = "(Space)"
-focus_mode = 0
-mouse_default_cursor_shape = 2
-shortcut_in_tooltip = false
-enabled_focus_mode = 0
-shortcut = SubResource( 24 )
-text = "Roll"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SpacerMiddle" type="MarginContainer" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 312.0
+margin_right = 171.0
+margin_bottom = 333.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 
-[node name="RollInvalidDice" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -287.0
+[node name="RollAll" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
 margin_top = 343.0
-margin_right = -14.9999
-margin_bottom = 398.0
+margin_right = 171.0
+margin_bottom = 381.0
 grow_horizontal = 0
-hint_tooltip = "(Shift + Space)"
-focus_mode = 0
+hint_tooltip = "(Space) Throw every dice into the air."
+focus_neighbour_left = NodePath("../AddDie")
+focus_neighbour_top = NodePath("../ClearDice")
+focus_neighbour_bottom = NodePath("../LockValidDice")
+focus_next = NodePath("../LockValidDice")
+focus_previous = NodePath("../ClearDice")
 mouse_default_cursor_shape = 2
+theme = ExtResource( 11 )
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
-shortcut = SubResource( 26 )
-text = "Roll Invalid Dice"
+shortcut = SubResource( 24 )
+text = "Roll All"
+icon = ExtResource( 7 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LockValidDice" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -287.0
-margin_top = 407.0
-margin_right = -14.9999
-margin_bottom = 462.0
+[node name="LockValidDice" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 391.0
+margin_right = 171.0
+margin_bottom = 419.0
 grow_horizontal = 0
-hint_tooltip = "(L)"
-focus_mode = 0
+hint_tooltip = "(L) Toggle lock on all currently valid dice"
+focus_neighbour_top = NodePath("../RollAll")
+focus_neighbour_bottom = NodePath("../RollInvalidDice")
+focus_next = NodePath("../RollInvalidDice")
+focus_previous = NodePath("../RollAll")
 mouse_default_cursor_shape = 2
 toggle_mode = true
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
 shortcut = SubResource( 28 )
-text = "Lock Valid Dice"
+text = "Lock Valid"
+icon = ExtResource( 6 )
+expand_icon = true
+script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ClearDice" type="Button" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -287.0
-margin_top = 487.0
-margin_right = -14.9999
-margin_bottom = 542.0
+[node name="RollInvalidDice" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 429.0
+margin_right = 171.0
+margin_bottom = 457.0
 grow_horizontal = 0
-hint_tooltip = "(C)"
-focus_mode = 0
+hint_tooltip = "(Shift + Space) Roll only invalid dice."
+focus_neighbour_top = NodePath("../LockValidDice")
+focus_neighbour_bottom = NodePath("../Tertiary/Container/ZoomIn")
+focus_next = NodePath("../Tertiary/Container/ZoomIn")
+focus_previous = NodePath("../LockValidDice")
 mouse_default_cursor_shape = 2
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
-shortcut = SubResource( 30 )
-text = "Clear Dice"
+shortcut = SubResource( 26 )
+text = "Roll Invalid"
+icon = ExtResource( 7 )
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AreaScale" type="HSlider" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -287.0
-margin_top = -49.0
-margin_right = -14.9999
-margin_bottom = -17.0
-hint_tooltip = "Area Scale"
-mouse_default_cursor_shape = 10
-min_value = 0.2
-max_value = 1.0
-step = 0.2
-value = 0.2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tertiary" type="AspectRatioContainer" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 467.0
+margin_right = 171.0
+margin_bottom = 507.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource( 9 )
+ratio = 4.0
+stretch_mode = 0
+alignment_vertical = 0
+script = ExtResource( 10 )
 
-[node name="CameraZoom" type="HSlider" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -287.0
-margin_top = -97.0
-margin_right = -13.9999
-margin_bottom = -65.0
-hint_tooltip = "Camera Zoom"
-mouse_default_cursor_shape = 10
-max_value = 32.0
-step = 0.5
-value = 32.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Container" type="HBoxContainer" parent="Layout/Interactions/Buttons/Buttons/Tertiary"]
+margin_right = 171.0
+margin_bottom = 42.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 9 )
+custom_constants/separation = 10
 
-[node name="Counter" type="Tree" parent="."]
-anchor_bottom = 1.0
-margin_left = 17.2331
-margin_top = 446.933
-margin_right = 250.233
-margin_bottom = -10.0667
-hint_tooltip = "count all the thing!
+[node name="Help" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary/Container"]
+margin_right = 32.0
+margin_bottom = 42.0
+hint_tooltip = "Need help? Press and get help!"
+focus_neighbour_top = NodePath("../../../RollInvalidDice")
+focus_neighbour_right = NodePath("../ZoomIn")
+focus_neighbour_bottom = NodePath("../../../Tertiary2/Container/Settings")
+focus_next = NodePath("../../../Tertiary2/Container/Settings")
+focus_previous = NodePath("../../../RollInvalidDice")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
 
-die type      amount
-- [ side ]      amount
-- sum          side sum"
-focus_mode = 0
-custom_styles/bg = SubResource( 31 )
-custom_fonts/font = ExtResource( 16 )
-columns = 2
-hide_folding = true
-hide_root = true
-select_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Spacer" type="MarginContainer" parent="Layout/Interactions/Buttons/Buttons/Tertiary/Container"]
+margin_left = 42.0
+margin_right = 85.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
 
-[node name="Help" type="TextureRect" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -287.0
-margin_top = -169.0
-margin_right = -231.0
-margin_bottom = -113.0
-hint_tooltip = "Hotkeys: 
-Space - roll all dice
-Shift + Space - roll invalid dice
+[node name="ZoomIn" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary/Container"]
+margin_left = 95.0
+margin_right = 128.0
+margin_bottom = 42.0
+hint_tooltip = "(+) Zoom in"
+focus_neighbour_left = NodePath("../Help")
+focus_neighbour_top = NodePath("../../../RollInvalidDice")
+focus_neighbour_right = NodePath("../ZoomOut")
+focus_neighbour_bottom = NodePath("../../../Tertiary2/Container/SizeUp")
+focus_next = NodePath("../ZoomOut")
+focus_previous = NodePath("../../../RollInvalidDice")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+shortcut = SubResource( 32 )
+icon = ExtResource( 13 )
+flat = true
+expand_icon = true
 
-N - New die (of selected type)
-M - Fill to max dice limit
-C - Clear all dice
-L - Lock all valid dice (so you can reroll in peace)
-Numbers - Select die types
+[node name="ZoomOut" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary/Container"]
+margin_left = 138.0
+margin_right = 171.0
+margin_bottom = 42.0
+hint_tooltip = "(-) Zoom out"
+focus_neighbour_left = NodePath("../ZoomIn")
+focus_neighbour_top = NodePath("../../../RollInvalidDice")
+focus_neighbour_right = NodePath("../../../../../../Statistics")
+focus_neighbour_bottom = NodePath("../../../Tertiary2/Container/SizeDown")
+focus_next = NodePath("../../../Tertiary2/Container/SizeUp")
+focus_previous = NodePath("../ZoomIn")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+shortcut = SubResource( 34 )
+icon = ExtResource( 14 )
+flat = true
+expand_icon = true
 
-Left Mouse Button - Roll clicked die
-Right Mouse Button - Remove clicked die
+[node name="Tertiary2" type="AspectRatioContainer" parent="Layout/Interactions/Buttons/Buttons"]
+margin_top = 517.0
+margin_right = 171.0
+margin_bottom = 557.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme = ExtResource( 9 )
+ratio = 4.0
+stretch_mode = 0
+alignment_vertical = 0
+script = ExtResource( 10 )
 
-Range sliders change area size and camera"
-mouse_default_cursor_shape = 16
-theme = ExtResource( 2 )
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Container" type="HBoxContainer" parent="Layout/Interactions/Buttons/Buttons/Tertiary2"]
+margin_right = 171.0
+margin_bottom = 42.75
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
 
-[node name="Border" type="ColorPickerButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -70.767
-margin_top = -169.067
-margin_right = -14.767
-margin_bottom = -114.067
-focus_mode = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Settings" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary2/Container"]
+margin_right = 32.0
+margin_bottom = 42.0
+hint_tooltip = "Settings"
+focus_neighbour_top = NodePath("../../../Tertiary/Container/Help")
+focus_neighbour_right = NodePath("../SizeUp")
+focus_next = NodePath("../SizeUp")
+focus_previous = NodePath("../../../Tertiary/Container/Help")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+icon = ExtResource( 18 )
+flat = true
+expand_icon = true
 
-[node name="Number" type="ColorPickerButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -142.767
-margin_top = -169.067
-margin_right = -86.767
-margin_bottom = -114.067
-focus_mode = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Spacer" type="MarginContainer" parent="Layout/Interactions/Buttons/Buttons/Tertiary2/Container"]
+margin_left = 42.0
+margin_right = 85.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.3
 
-[node name="Body" type="ColorPickerButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -214.767
-margin_top = -169.067
-margin_right = -158.767
-margin_bottom = -114.067
-focus_mode = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SizeUp" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary2/Container"]
+margin_left = 95.0
+margin_right = 128.0
+margin_bottom = 42.0
+hint_tooltip = "(Shift +) Grow field"
+focus_neighbour_left = NodePath("../Settings")
+focus_neighbour_top = NodePath("../../../Tertiary/Container/ZoomIn")
+focus_neighbour_right = NodePath("../SizeDown")
+focus_next = NodePath("../SizeDown")
+focus_previous = NodePath("../../../Tertiary/Container/ZoomOut")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+shortcut = SubResource( 36 )
+icon = ExtResource( 15 )
+flat = true
+expand_icon = true
 
-[node name="FeatureRequest" type="LinkButton" parent="."]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -278.767
-margin_top = -225.067
-margin_right = -32.7668
-margin_bottom = -186.067
-text = "Request a feature"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="SizeDown" type="Button" parent="Layout/Interactions/Buttons/Buttons/Tertiary2/Container"]
+margin_left = 138.0
+margin_right = 171.0
+margin_bottom = 42.0
+hint_tooltip = "(Shift -) Shrink field"
+focus_neighbour_left = NodePath("../SizeUp")
+focus_neighbour_top = NodePath("../../../Tertiary/Container/ZoomOut")
+focus_neighbour_right = NodePath("../../../../../../Statistics")
+focus_next = NodePath("../../../../../../Statistics")
+focus_previous = NodePath("../SizeUp")
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 3
+shortcut_in_tooltip = false
+shortcut = SubResource( 38 )
+icon = ExtResource( 16 )
+flat = true
+expand_icon = true
 
-[connection signal="toggled" from="d4" to="." method="_on_type_selected"]
-[connection signal="toggled" from="d6" to="." method="_on_type_selected"]
-[connection signal="toggled" from="d8" to="." method="_on_type_selected"]
-[connection signal="toggled" from="d10" to="." method="_on_type_selected"]
-[connection signal="toggled" from="d12" to="." method="_on_type_selected"]
-[connection signal="toggled" from="d20" to="." method="_on_type_selected"]
-[connection signal="button_down" from="AddDie" to="." method="_on_AddDie_button_down"]
-[connection signal="button_down" from="AddMaxDice" to="." method="_on_AddMaxDice_button_down"]
-[connection signal="button_down" from="Roll" to="." method="_on_Roll_button_down"]
-[connection signal="button_down" from="RollInvalidDice" to="." method="_on_RollInvalidDice_button_down"]
-[connection signal="button_down" from="LockValidDice" to="." method="_on_LockValidDice_button_down"]
-[connection signal="button_down" from="ClearDice" to="." method="_on_ClearDice_button_down"]
-[connection signal="value_changed" from="AreaScale" to="." method="_on_AreaScale_value_changed"]
-[connection signal="value_changed" from="CameraZoom" to="." method="_on_CameraZoom_value_changed"]
-[connection signal="color_changed" from="Border" to="." method="_on_Border_color_changed"]
-[connection signal="color_changed" from="Number" to="." method="_on_Number_color_changed"]
-[connection signal="color_changed" from="Body" to="." method="_on_Body_color_changed"]
-[connection signal="pressed" from="FeatureRequest" to="." method="_on_FeatureRequest_pressed"]
+[node name="MiddleScreenSpace" type="MarginContainer" parent="Layout"]
+margin_left = 175.0
+margin_right = 1206.0
+margin_bottom = 840.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="Statistics" parent="Layout" instance=ExtResource( 2 )]
+margin_left = 1210.0
+margin_right = 1380.0
+margin_bottom = 840.0
+rect_min_size = Vector2( 170, 0 )
+
+[node name="Settings" parent="." instance=ExtResource( 8 )]
+visible = false
+
+[node name="Help" parent="." instance=ExtResource( 19 )]
+visible = false
+
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/AddDie" to="." method="_on_AddDie_button_down"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/ClearDice" to="." method="_on_ClearDice_button_down"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/RollAll" to="." method="_on_Roll_button_down"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/LockValidDice" to="." method="_on_LockValidDice_button_down"]
+[connection signal="toggled" from="Layout/Interactions/Buttons/Buttons/LockValidDice" to="Layout/Interactions/Buttons/Buttons/LockValidDice" method="_on_LockValidDice_toggled"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/RollInvalidDice" to="." method="_on_RollInvalidDice_button_down"]
+[connection signal="pressed" from="Layout/Interactions/Buttons/Buttons/Tertiary/Container/Help" to="." method="_on_Help_pressed"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary/Container/ZoomIn" to="." method="_on_ZoomIn_button_down"]
+[connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary/Container/ZoomIn" to="." method="_on_ZoomIn_button_up"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary/Container/ZoomOut" to="." method="_on_ZoomOut_button_down"]
+[connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary/Container/ZoomOut" to="." method="_on_ZoomOut_button_up"]
+[connection signal="pressed" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeUp" to="." method="_on_SizeUp_button_down"]
+[connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeUp" to="." method="_on_SizeUp_button_up"]
+[connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_down"]
+[connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_up"]
