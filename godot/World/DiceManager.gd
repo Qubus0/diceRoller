@@ -79,7 +79,6 @@ func randomize_throw(die: Die) -> void:
 
 func roll(die: Die) -> void:
 	var max_up_velocity := ceil($'/root/main'.global_area_scale*5) * 5
-	print(random_value_in_range(10, max_up_velocity))
 	die.linear_velocity = Vector3(
 			random_value_in_range(1, 3, true),
 			random_value_in_range(10, max_up_velocity),

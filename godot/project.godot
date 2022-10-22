@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "RigidBody",
 "class": "Die",
 "language": "GDScript",
-"path": "res://dice/scripts/abstractDie.gd"
+"path": "res://dice/scripts/AbstractDie.gd"
 }, {
 "base": "Node",
 "class": "DieTypeData",
