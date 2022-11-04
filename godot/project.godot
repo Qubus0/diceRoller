@@ -36,7 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CheckToggle": "",
-"Die": "res://dice/scripts/AbstractDie.gd",
+"Die": "res://icon.png",
 "DieTypeData": "",
 "DieTypeStatistic": "",
 "SimpleColorPickerButton": ""

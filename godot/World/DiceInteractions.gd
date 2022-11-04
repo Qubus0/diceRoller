@@ -12,6 +12,7 @@ var mouse_ray: RayCast
 
 func _ready() -> void:
 	mouse_ray = RayCast.new()
+	mouse_ray.debug_shape_thickness = 0
 	mouse_ray.collision_mask = 2
 	add_child(mouse_ray)
 	for except in $'/root/main/Box/OtherBoxSides'.get_children():

@@ -1,5 +1,5 @@
 extends RigidBody
-class_name Die, 'res://dice/scripts/AbstractDie.gd'
+class_name Die, 'res://icon.png'
 
 onready var MESH: MeshInstance = $Mesh
 onready var BORDER: MeshInstance = $Mesh/Border

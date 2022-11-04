@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Interface/Icons/d6.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Statistics.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://Interface/Scripts/LockValidDiceButton.gd" type="Script" id=17]
 [ext_resource path="res://Interface/Icons/settings.png" type="Texture" id=18]
 [ext_resource path="res://Interface/Help.tscn" type="PackedScene" id=19]
+[ext_resource path="res://icon.png" type="Texture" id=20]
+[ext_resource path="res://Interface/Fonts/JetBrainsMono-SemiBold.ttf" type="DynamicFontData" id=21]
 
 [sub_resource type="InputEventAction" id=19]
 action = "add_die"
@@ -75,15 +77,20 @@ action = "size_down"
 [sub_resource type="ShortCut" id=38]
 shortcut = SubResource( 37 )
 
+[sub_resource type="DynamicFont" id=39]
+size = 50
+outline_color = Color( 1, 0.92549, 0.839216, 1 )
+use_filter = true
+extra_spacing_top = -10
+extra_spacing_bottom = -10
+font_data = ExtResource( 21 )
+
 [node name="Interface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 12 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Layout" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -438,6 +445,38 @@ visible = false
 
 [node name="Help" parent="." instance=ExtResource( 19 )]
 visible = false
+
+[node name="LogoOverlay" type="HBoxContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -359.0
+margin_top = -159.0
+margin_right = -40.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="LogoOverlay"]
+margin_right = 105.0
+margin_bottom = 143.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 3
+texture = ExtResource( 20 )
+expand = true
+stretch_mode = 6
+
+[node name="Textmark" type="Label" parent="LogoOverlay"]
+margin_left = 109.0
+margin_top = 24.0
+margin_right = 319.0
+margin_bottom = 119.0
+custom_fonts/font = SubResource( 39 )
+text = "Hundred
+Dice"
 
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/AddDie" to="." method="_on_AddDie_button_down"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/ClearDice" to="." method="_on_ClearDice_button_down"]
