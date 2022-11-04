@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 		else:
 			set_invalid(false)
 		emit_signal('die_rolled', type, get_rolled_side(), get_instance_id())
-	if translation.y < -10:
+	if translation.y < -4:
 		respawn()
 
 
