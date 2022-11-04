@@ -2,7 +2,6 @@
 godot/.godot
 godot/addons/*
 godot/.import/
-*.import
 
 # IDEs
 .idea
