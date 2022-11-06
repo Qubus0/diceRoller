@@ -27,9 +27,6 @@ size_flags_vertical = 3
 theme = ExtResource( 2 )
 custom_constants/separation = 0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="IconAspect" type="AspectRatioContainer" parent="."]
 margin_right = 40.0

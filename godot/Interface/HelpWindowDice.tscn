@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Interface/Fonts/smaller_mono.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Interface/Scripts/DicePreview.gd" type="Script" id=2]
 [ext_resource path="res://Interface/MultipleDicePreview.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Interface/Shortcut.tscn" type="PackedScene" id=7]
 
@@ -29,13 +30,10 @@ corner_detail = 1
 
 [node name="Content" type="HBoxContainer"]
 margin_right = 677.0
-margin_bottom = 452.0
+margin_bottom = 462.0
 mouse_filter = 2
 size_flags_vertical = 3
 theme = SubResource( 41 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Preview" type="Panel" parent="."]
 margin_right = 230.0
@@ -44,17 +42,19 @@ rect_min_size = Vector2( 230, 0 )
 mouse_filter = 2
 custom_styles/panel = SubResource( 2197 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="Preview"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Preview"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
-stretch = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Viewport" type="Viewport" parent="Preview/ViewportContainer"]
-size = Vector2( 230, 462 )
+[node name="ViewportContainer" type="ViewportContainer" parent="Preview/VBoxContainer"]
+margin_right = 230.0
+margin_bottom = 462.0
+mouse_filter = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="Viewport" type="Viewport" parent="Preview/VBoxContainer/ViewportContainer"]
+size = Vector2( 920, 1848 )
 size_override_stretch = true
 own_world = true
 world = SubResource( 2196 )
@@ -62,12 +62,10 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 gui_disable_input = true
+gui_snap_controls_to_pixels = false
+script = ExtResource( 2 )
 
-[node name="Spatial" parent="Preview/ViewportContainer/Viewport" instance=ExtResource( 3 )]
-
-[node name="ColorRect" type="ColorRect" parent="Preview/ViewportContainer"]
-margin_bottom = 653.0
-mouse_filter = 2
+[node name="Spatial" parent="Preview/VBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 3 )]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 234.0
@@ -93,7 +91,7 @@ custom_constants/separation = 0
 margin_right = 245.0
 margin_bottom = 37.0
 text = "A normal die
-Has completely normal physics"
+...has completely normal physics"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HelpText"]
 margin_top = 37.0
@@ -127,8 +125,8 @@ margin_top = 234.0
 margin_right = 245.0
 margin_bottom = 291.0
 text = "A locked die
-Stays in place
-No physics except collision"
+...stays in place
+...has no physics except collision"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HelpText"]
 margin_top = 291.0
@@ -155,7 +153,7 @@ margin_top = 348.0
 margin_right = 245.0
 margin_bottom = 405.0
 text = "An invalid die
-Like a normal die
+...is just a normal die
 (but you know it doesn’t sit right)"
 
 [node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/HelpText"]

@@ -1,21 +1,26 @@
 tool
 extends PanelContainer
+class_name Window
 
 export var window_title := ''
-export var help_window_content: PackedScene
+export var icon: Texture
+export var window_content: PackedScene
 var drag_position = null
 
-signal moved(help_window)
+
+signal moved(window)
 
 
 func _ready() -> void:
 	$Container/TitleBar/Margin/Container/Title.text = window_title
-	if help_window_content:
-		$Container.add_child(help_window_content.instance())
+	$ReopenControl/Panel/ReopenTitle.text = window_title
+	if window_content:
+		$Container.add_child(window_content.instance())
+	if icon:
+		$ReopenControl/Icon/TextureRect.texture = icon
 
 
-
-func _on_HelpWindow_gui_input(event: InputEvent) -> void:
+func _on_Window_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		emit_signal('moved', self)
 
@@ -33,10 +38,6 @@ func _on_TitleBar_gui_input(event: InputEvent) -> void:
 		move_inside_bounds()
 
 
-func _on_CloseButton_pressed() -> void:
-	hide()
-
-
 func move_inside_bounds() -> void:
 	var bounds := get_viewport_rect()
 
@@ -51,4 +52,26 @@ func move_inside_bounds() -> void:
 
 	if rect_position.y < bounds.position.y:
 		rect_position.y = bounds.position.y
+
+
+func hide() -> void:
+	$ReopenControl.show()
+	$Background.hide()
+	$Container.hide()
+
+
+func show() -> void:
+	$ReopenControl.hide()
+	$Background.show()
+	$Container.show()
+
+
+func _on_CloseButton_pressed() -> void:
+	hide()
+
+
+func _on_Reopen_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			show()
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Interface/Shortcut.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/Shortcut.tscn" type="PackedScene" id=1]
 
 [sub_resource type="StyleBoxFlat" id=39]
 draw_center = false
@@ -8,7 +8,7 @@ border_width_left = 2
 border_color = Color( 1, 0.92549, 0.839216, 1 )
 corner_detail = 1
 
-[node name="QuitFullHelp" type="HBoxContainer"]
+[node name="OtherHotkeysHelp" type="HBoxContainer"]
 margin_right = 206.0
 margin_bottom = 70.0
 mouse_filter = 2
@@ -66,7 +66,7 @@ rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 alignment = 1
 
-[node name="ShortcutResize" parent="MarginContainer2/Shortcuts/VBoxContainer" instance=ExtResource( 3 )]
+[node name="ShortcutResize" parent="MarginContainer2/Shortcuts/VBoxContainer" instance=ExtResource( 1 )]
 margin_top = 5.0
 margin_right = 83.0
 margin_bottom = 25.0

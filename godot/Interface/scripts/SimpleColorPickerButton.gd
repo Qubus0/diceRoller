@@ -28,11 +28,7 @@ func _ready() -> void:
 	# warning-ignore:return_value_discarded
 	panel.connect("popup_hide", self, "panel_closed")
 
-	# figure out the actual rect size so position it correctly in show_panel
-	panel.popup()
-	panel.hide()
-
-	set_colors(color)
+	$ColorRect.color = color
 
 
 func simplify_color_picker(picker: ColorPicker) -> ColorPicker:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/question.png-8783fa1f3f7fc0bf6b06b3758a394dbf.stex"
+path="res://.import/help-circled.png-893e5110b0a3cbaa6bf50eec9ca9db6a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Interface/Icons/question.png"
-dest_files=[ "res://.import/question.png-8783fa1f3f7fc0bf6b06b3758a394dbf.stex" ]
+source_file="res://Interface/Icons/help-circled.png"
+dest_files=[ "res://.import/help-circled.png-893e5110b0a3cbaa6bf50eec9ca9db6a.stex" ]
 
 [params]
 
