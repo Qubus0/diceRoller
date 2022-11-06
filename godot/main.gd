@@ -19,6 +19,8 @@ func handle_zoom_event(event: InputEvent) -> void:
 	if not event is InputEventWithModifiers:
 		return
 
+	var scroll_invertion := -1.0 if SettingsData.get_setting("invert_scroll") else 1.0
+	var resize_invertion := -1.0 if SettingsData.get_setting("invert_resize") else 1.0
 	if event is InputEventMagnifyGesture:
 		if event.alt or event.shift:
 			if event.factor > 1:
@@ -39,17 +41,17 @@ func handle_zoom_event(event: InputEvent) -> void:
 		if event.alt or event.shift:
 			if event.is_action_pressed('scroll_up'):
 				size_up = true
-				resize()
+				resize(resize_invertion)
 			elif event.is_action_pressed('scroll_down'):
 				size_up = false
-				resize()
+				resize(resize_invertion)
 		else:
 			if event.is_action_pressed('scroll_up'):
 				zoom_in = true
-				zoom()
+				zoom(scroll_invertion)
 			elif event.is_action_pressed('scroll_down'):
 				zoom_in = false
-				zoom()
+				zoom(scroll_invertion)
 
 
 func _on_Interface_area_resized(_size_up: bool, pressed: bool) -> void:

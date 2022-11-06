@@ -33,13 +33,25 @@ _global_script_classes=[ {
 "class": "SimpleColorPickerButton",
 "language": "GDScript",
 "path": "res://Interface/Scripts/SimpleColorPickerButton.gd"
+}, {
+"base": "PanelContainer",
+"class": "Window",
+"language": "GDScript",
+"path": "res://Interface/Scripts/Window.gd"
+}, {
+"base": "ColorRect",
+"class": "WindowContainer",
+"language": "GDScript",
+"path": "res://Interface/Scripts/WindowContainer.gd"
 } ]
 _global_script_class_icons={
 "CheckToggle": "",
 "Die": "res://icon.png",
 "DieTypeData": "",
 "DieTypeStatistic": "",
-"SimpleColorPickerButton": ""
+"SimpleColorPickerButton": "",
+"Window": "",
+"WindowContainer": ""
 }
 
 [application]
@@ -53,6 +65,7 @@ config/icon="res://icon.png"
 
 DiceData="*res://Services/DiceData.gd"
 DebugDraw="*res://addons/debug_draw/debug_draw.gd"
+SettingsData="*res://Services/SettingsData.gd"
 
 [display]
 
@@ -223,6 +236,7 @@ common/physics_fps=50
 common/enable_pause_aware_picking=true
 3d/physics_engine="Bullet"
 3d/active_soft_world=false
+3d/default_gravity=10.0
 
 [rendering]
 

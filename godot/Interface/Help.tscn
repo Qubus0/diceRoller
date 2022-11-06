@@ -1,21 +1,19 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Interface/Scripts/Help.gd" type="Script" id=1]
-[ext_resource path="res://Interface/HelpWindow.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Interface/ButtonsHelp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Interface/DiceHelp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Interface/AddDiceHelp.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Interface/StatisticsHelp.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Interface/QuitFullHelp.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Interface/Scripts/WindowContainer.gd" type="Script" id=1]
+[ext_resource path="res://Interface/Window.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interface/HelpWindowButtons.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Interface/HelpWindowDice.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Interface/HelpWindowAddDice.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interface/HelpWindowStatistics.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Interface/HelpWindowOtherHotkeys.tscn" type="PackedScene" id=7]
 
 [node name="Help" type="ColorRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+hint_tooltip = "Close Overlay"
 color = Color( 0.129412, 0.239216, 0.341176, 0.501961 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Buttons" parent="." instance=ExtResource( 2 )]
 anchor_top = 1.0
@@ -25,15 +23,15 @@ margin_top = -388.0
 margin_right = 479.0
 margin_bottom = -148.0
 window_title = "Other Buttons"
-help_window_content = ExtResource( 3 )
+window_content = ExtResource( 3 )
 
 [node name="DiceAdd" parent="." instance=ExtResource( 2 )]
 margin_left = 14.0
 margin_top = 83.0
 margin_right = 622.0
-margin_bottom = 335.0
+margin_bottom = 320.0
 window_title = "Adding Dice"
-help_window_content = ExtResource( 5 )
+window_content = ExtResource( 5 )
 
 [node name="Statistics" parent="." instance=ExtResource( 2 )]
 anchor_left = 1.0
@@ -43,28 +41,26 @@ margin_top = 46.0
 margin_right = -229.0
 margin_bottom = 351.0
 window_title = "Dice Statistics"
-help_window_content = ExtResource( 6 )
+window_content = ExtResource( 6 )
 
 [node name="Dice" parent="." instance=ExtResource( 2 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -155.0
-margin_top = -67.0
-margin_right = 573.0
-margin_bottom = 430.0
+margin_left = -17.0
+margin_top = -71.0
+margin_right = 660.0
+margin_bottom = 426.0
 window_title = "The Math Rocks"
-help_window_content = ExtResource( 4 )
+window_content = ExtResource( 4 )
 
-[node name="QuitFull" parent="." instance=ExtResource( 2 )]
+[node name="OtherHotkeys" parent="." instance=ExtResource( 2 )]
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 88.0
-margin_top = -84.5
+margin_top = -84.0
 margin_right = 341.0
-margin_bottom = 20.5
-window_title = "Other"
-help_window_content = ExtResource( 7 )
-
-[connection signal="gui_input" from="." to="." method="_on_Help_gui_input"]
+margin_bottom = 21.0
+window_title = "Other Hotkeys"
+window_content = ExtResource( 7 )

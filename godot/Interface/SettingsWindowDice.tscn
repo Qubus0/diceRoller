@@ -1,0 +1,391 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Interface/Themes/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://Interface/Icons/commands.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Icons/d10.png" type="Texture" id=3]
+[ext_resource path="res://Interface/DicePreview.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Interface/Icons/d8.png" type="Texture" id=5]
+[ext_resource path="res://Interface/CheckToggle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Interface/SimpleColorPickerButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Interface/Icons/d12.png" type="Texture" id=8]
+[ext_resource path="res://Interface/Icons/d6.png" type="Texture" id=9]
+[ext_resource path="res://Interface/Icons/d20.png" type="Texture" id=10]
+[ext_resource path="res://Interface/Scripts/SettingsWindowDice.gd" type="Script" id=11]
+[ext_resource path="res://Interface/Icons/d4.png" type="Texture" id=12]
+[ext_resource path="res://Interface/Scripts/DicePreview.gd" type="Script" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=2199]
+
+[sub_resource type="Environment" id=2195]
+ambient_light_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="World" id=2196]
+environment = SubResource( 2195 )
+
+[node name="SettingsWindowDice" type="HBoxContainer"]
+margin_right = 622.0
+margin_bottom = 344.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 11 )
+
+[node name="Margin1" type="MarginContainer" parent="."]
+margin_right = 270.0
+margin_bottom = 344.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="DiceTypes" type="GridContainer" parent="Margin1"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 324.0
+custom_constants/vseparation = 14
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="SettingLabel1" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_right = 150.0
+margin_bottom = 30.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel1"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel1"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 150.0
+margin_bottom = 24.0
+text = "Use commands"
+
+[node name="CommandsToggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_right = 230.0
+margin_bottom = 30.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+disabled = true
+
+[node name="SettingLabel2" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 44.0
+margin_right = 150.0
+margin_bottom = 74.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel2"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 12 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel2"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 139.0
+margin_bottom = 24.0
+text = "Show d4 input"
+
+[node name="D4Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 44.0
+margin_right = 230.0
+margin_bottom = 74.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="SettingLabel3" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 88.0
+margin_right = 150.0
+margin_bottom = 118.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel3"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel3"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 139.0
+margin_bottom = 24.0
+text = "Show d8 input"
+
+[node name="D6Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 88.0
+margin_right = 230.0
+margin_bottom = 118.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="SettingLabel4" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 132.0
+margin_right = 150.0
+margin_bottom = 162.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel4"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel4"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 139.0
+margin_bottom = 24.0
+text = "Show d8 input"
+
+[node name="D8Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 132.0
+margin_right = 230.0
+margin_bottom = 162.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="SettingLabel5" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 176.0
+margin_right = 150.0
+margin_bottom = 206.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel5"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel5"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 147.0
+margin_bottom = 24.0
+text = "Show d20 input"
+
+[node name="D10Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 176.0
+margin_right = 230.0
+margin_bottom = 206.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="SettingLabel6" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 220.0
+margin_right = 150.0
+margin_bottom = 250.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel6"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel6"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 147.0
+margin_bottom = 24.0
+text = "Show d20 input"
+
+[node name="D12Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 220.0
+margin_right = 230.0
+margin_bottom = 250.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="SettingLabel7" type="HBoxContainer" parent="Margin1/DiceTypes"]
+margin_top = 264.0
+margin_right = 150.0
+margin_bottom = 294.0
+custom_constants/separation = 15
+
+[node name="TextureRect" type="TextureRect" parent="Margin1/DiceTypes/SettingLabel7"]
+modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 30, 30 )
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="Margin1/DiceTypes/SettingLabel7"]
+margin_left = 45.0
+margin_top = 6.0
+margin_right = 147.0
+margin_bottom = 24.0
+text = "Show d20 input"
+
+[node name="D20Toggle" parent="Margin1/DiceTypes" instance=ExtResource( 6 )]
+margin_left = 170.0
+margin_top = 264.0
+margin_right = 230.0
+margin_bottom = 294.0
+custom_styles/panel = SubResource( 2199 )
+show_label_left = true
+pressed = true
+
+[node name="VSeparator" type="VSeparator" parent="."]
+margin_left = 274.0
+margin_right = 278.0
+margin_bottom = 344.0
+
+[node name="Margin2" type="MarginContainer" parent="."]
+margin_left = 282.0
+margin_right = 622.0
+margin_bottom = 344.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 14
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 30
+
+[node name="DiceTheme" type="VBoxContainer" parent="Margin2"]
+margin_left = 20.0
+margin_top = 14.0
+margin_right = 320.0
+margin_bottom = 314.0
+rect_min_size = Vector2( 300, 300 )
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+alignment = 2
+
+[node name="Preview" type="ViewportContainer" parent="Margin2/DiceTheme"]
+margin_right = 300.0
+margin_bottom = 253.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="Margin2/DiceTheme/Preview"]
+size = Vector2( 600, 506 )
+size_override_stretch = true
+own_world = true
+world = SubResource( 2196 )
+transparent_bg = true
+handle_input_locally = false
+usage = 3
+render_target_update_mode = 3
+gui_disable_input = true
+script = ExtResource( 13 )
+
+[node name="Spatial" parent="Margin2/DiceTheme/Preview/Viewport" instance=ExtResource( 4 )]
+
+[node name="ColorPickers" type="HBoxContainer" parent="Margin2/DiceTheme"]
+margin_top = 257.0
+margin_right = 300.0
+margin_bottom = 300.0
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="SpacerBegin" type="MarginContainer" parent="Margin2/DiceTheme/ColorPickers"]
+margin_right = 48.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+
+[node name="Container1" type="AspectRatioContainer" parent="Margin2/DiceTheme/ColorPickers"]
+margin_left = 68.0
+margin_right = 109.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Body" parent="Margin2/DiceTheme/ColorPickers/Container1" instance=ExtResource( 7 )]
+margin_left = -1.0
+margin_right = 42.0
+margin_bottom = 43.0
+hint_tooltip = "Change the dice color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 0.0745098, 0.145098, 0.207843, 1 )
+
+[node name="Container2" type="AspectRatioContainer" parent="Margin2/DiceTheme/ColorPickers"]
+margin_left = 129.0
+margin_right = 170.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Numbers" parent="Margin2/DiceTheme/ColorPickers/Container2" instance=ExtResource( 7 )]
+margin_left = -1.0
+margin_right = 42.0
+margin_bottom = 43.0
+hint_tooltip = "Change the number color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 1, 0.92549, 0.839216, 1 )
+
+[node name="Container3" type="AspectRatioContainer" parent="Margin2/DiceTheme/ColorPickers"]
+margin_left = 190.0
+margin_right = 231.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+stretch_mode = 1
+
+[node name="Border" parent="Margin2/DiceTheme/ColorPickers/Container3" instance=ExtResource( 7 )]
+margin_left = -1.0
+margin_right = 42.0
+margin_bottom = 43.0
+hint_tooltip = "Change the outline color"
+size_flags_horizontal = 3
+size_flags_vertical = 3
+default_color = Color( 1, 0.768627, 0.564706, 1 )
+
+[node name="SpacerEnd" type="MarginContainer" parent="Margin2/DiceTheme/ColorPickers"]
+margin_left = 251.0
+margin_right = 300.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.2
+
+[connection signal="toggled" from="Margin1/DiceTypes/CommandsToggle" to="." method="_on_CommandsToggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D4Toggle" to="." method="_on_D4Toggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D6Toggle" to="." method="_on_D6Toggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D8Toggle" to="." method="_on_D8Toggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D10Toggle" to="." method="_on_D10Toggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D12Toggle" to="." method="_on_D12Toggle_toggled"]
+[connection signal="toggled" from="Margin1/DiceTypes/D20Toggle" to="." method="_on_D20Toggle_toggled"]
+[connection signal="color_changed" from="Margin2/DiceTheme/ColorPickers/Container1/Body" to="." method="_on_Body_color_changed"]
+[connection signal="color_changed" from="Margin2/DiceTheme/ColorPickers/Container2/Numbers" to="." method="_on_Numbers_color_changed"]
+[connection signal="color_changed" from="Margin2/DiceTheme/ColorPickers/Container3/Border" to="." method="_on_Border_color_changed"]
