@@ -100,4 +100,3 @@ func get_draw_mode() -> int:
 
 	return draw_modes.NORMAL
 
-

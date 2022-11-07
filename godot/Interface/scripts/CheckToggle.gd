@@ -1,3 +1,4 @@
+tool
 extends PanelContainer
 class_name CheckToggle
 
@@ -36,9 +37,13 @@ signal toggled(button_pressed)
 
 
 func _ready() -> void:
+	button.disabled = disabled
+	button.pressed = pressed
+
 	sync_theme()
 	set_label_text(label_text)
-	set_pressed(pressed)
+	set_show_label_left(show_label_left)
+	style_state()
 
 
 func _process(_delta: float) -> void:
@@ -60,6 +65,8 @@ func set_label_text(text: String) -> void:
 
 func set_show_label_left(show_left: bool) -> void:
 	show_label_left = show_left
+	if not label:
+		return
 	if show_left:
 		$VBox/HBox.move_child(label, 0)
 	else:
@@ -68,6 +75,8 @@ func set_show_label_left(show_left: bool) -> void:
 
 func set_pressed(is_pressed: bool) -> void:
 	pressed = is_pressed
+	if button:
+		button.pressed = is_pressed
 	style_state()
 
 
@@ -113,6 +122,7 @@ func style_state() -> void:
 	var background_style: StyleBox = background_normal
 	var background_state_style: StyleBox = null
 	handle_position.alignment_horizontal = HALIGN_LEFT
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 
 	if pressed:
 		handle_position.alignment_horizontal = HALIGN_RIGHT
@@ -133,6 +143,7 @@ func style_state() -> void:
 		has_state = true
 		handle_state_style = handle_disabled
 		background_state_style = background_disabled
+		button.mouse_default_cursor_shape = Control.CURSOR_ARROW
 
 
 	handle.add_stylebox_override('panel', handle_style)

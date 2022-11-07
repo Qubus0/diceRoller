@@ -16,6 +16,7 @@ signal lock_valid
 
 
 func _ready() -> void:
+	SettingsData.listen(self, "_on_dice_setting_changed")
 	for type in dice_types:
 		var select := preload('res://Interface/DiceSelect.tscn').instance()
 		select.name = type
@@ -25,6 +26,8 @@ func _ready() -> void:
 		# warning-ignore:return_value_discarded
 		select.connect('remove_dice', self, '_on_DiceSelectRemove_button_down')
 		$Layout/Interactions/DiceSelects.add_child(select)
+	apply_settings_recursive(self)
+	SettingsData.connect("settings_saved", self, "toast_message", ["Saved!", 0, 2])
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -34,6 +37,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		var type: String = dice_types[type_index - 1] # start at 0
 		self.selected_type = type
 		emit_signal('add_die', selected_type)
+
+
+func toast_message(message: String, delay: float = 0, lifetime: float = 0) -> void:
+	var toast: Toast = preload("res://Interface/Toast.tscn").instance()
+	toast.message = message
+	toast.delay = delay
+	toast.lifetime = lifetime
+	if $Toasts.get_child_count() > 0:
+		$Toasts.remove_child($Toasts.get_children()[0])
+	$Toasts.add_child(toast)
+
+
+func apply_settings_recursive(node: Node) -> void:
+	if node.has_method("apply_settings"):
+		node.apply_settings()
+	for child in node.get_children():
+		apply_settings_recursive(child)
 
 
 func set_selected_type(type: String) -> void:
@@ -59,6 +79,26 @@ func add_multiple(type: String) -> void:
 		max_addable[type] -= 1
 		emit_signal('add_die', type)
 		yield(get_tree().create_timer(.0003), 'timeout')
+
+
+func _on_dice_setting_changed(setting: String, value):
+	if "show_input_d" in setting:
+		var select: Control = $Layout/Interactions/DiceSelects.get_node(setting.trim_prefix("show_input_"))
+		select.visible = value
+	if setting == "use_commands":
+		$Layout/Interactions/DiceSelects.visible = not value
+		$DiceCommands.visible = SettingsData.get_setting(setting)
+
+
+func apply_settings():
+	for setting in SettingsData.settings:
+		if "show_input_d" in setting:
+			var dice_select_name = setting.trim_prefix("show_input_")
+			var select = $Layout/Interactions/DiceSelects.get_node(dice_select_name)
+			select.visible = SettingsData.get_setting(setting)
+		if setting == "use_commands":
+			$Layout/Interactions/DiceSelects.visible = not SettingsData.get_setting(setting)
+			$DiceCommands.visible = SettingsData.get_setting(setting)
 
 
 func _on_DiceSelectRemove_button_down(type: String) -> void:

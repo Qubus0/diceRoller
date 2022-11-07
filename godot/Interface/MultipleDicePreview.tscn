@@ -9,7 +9,7 @@
 script = ExtResource( 4 )
 
 [node name="d20" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.979912, 0.0105032, -0.199154, 0.0346847, 0.974418, 0.222051, 0.196391, -0.224498, 0.95448, -0.418905, 2.72977, 1.25231 )
+transform = Transform( 0.676614, 0.284786, -0.679037, -0.112768, 0.951379, 0.28664, 0.727652, -0.117371, 0.675831, -0.418905, 2.72977, 1.25231 )
 collision_layer = 0
 collision_mask = 0
 input_ray_pickable = false
@@ -17,11 +17,13 @@ mode = 1
 sleeping = true
 
 [node name="d12" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.340656, 0.881419, 0.327192, -0.155903, 0.396146, -0.904855, -0.927172, 0.257234, 0.272365, 0.76211, 1.17628, 3.01371 )
+transform = Transform( 0.370987, 0.758456, 0.535831, -0.0677041, 0.597562, -0.798959, -0.926167, 0.260125, 0.273038, 0.76211, 1.17628, 3.01371 )
+mode = 1
 sleeping = true
 
 [node name="d6" parent="." instance=ExtResource( 3 )]
-transform = Transform( 0.549472, -0.758374, 0.350641, 0.352216, 0.590808, 0.725872, -0.757644, -0.275344, 0.591744, -0.476795, 0.396661, 5.24776 )
+transform = Transform( 0.549472, -0.758374, 0.350641, 0.421828, 0.61406, 0.667077, -0.721209, -0.218629, 0.657312, -0.476795, 0.396661, 5.24776 )
+mode = 1
 sleeping = true
 
 [node name="Camera" type="Camera" parent="."]

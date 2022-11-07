@@ -1,5 +1,5 @@
 extends RigidBody
-class_name Die, 'res://dice/scripts/AbstractDie.gd'
+class_name Die, 'res://icon.png'
 
 onready var MESH: MeshInstance = $Mesh
 onready var BORDER: MeshInstance = $Mesh/Border
@@ -32,7 +32,8 @@ signal die_respawn(type)
 
 func _ready() -> void:
 	assert(type and number_of_sides, 'Die "%s" is invalid | type: %s sides: %s' % [name, type, number_of_sides])
-	set_invalid(true)
+	if get_invalid():
+		set_invalid(true)
 	MESH.scale = mesh_scale
 	COLLISION.scale = mesh_scale
 	# border is the simplified version of the mesh (no numbers -> less vertices)
@@ -44,12 +45,13 @@ func _process(delta: float) -> void:
 	time += delta
 	if time > 1:
 		time = 0
-		if get_rolled_side() <= 0:
+		var rolled := get_rolled_side()
+		if rolled <= 0:
 			set_invalid(true)
 		else:
 			set_invalid(false)
-		emit_signal('die_rolled', type, get_rolled_side(), get_instance_id())
-	if translation.y < -10:
+		emit_signal('die_rolled', type, rolled, get_instance_id())
+	if translation.y < -4:
 		respawn()
 
 
@@ -116,11 +118,20 @@ func set_locked(is_locked: bool) -> void:
 	locked = is_locked
 	if is_locked:
 		MESH.set_surface_material(0, locked_material)
-		self.mode = RigidBody.MODE_STATIC
-		self.sleeping = true
+		if SettingsData.get_setting("allow_locked_move"):
+			self.axis_lock_angular_z = true
+			self.axis_lock_angular_x = true
+			self.axis_lock_angular_y = true
+		else:
+			self.mode = RigidBody.MODE_STATIC
+			self.sleeping = true
 	else:
 		MESH.set_surface_material(0, null)
-		self.mode = RigidBody.MODE_RIGID
+		if self.mode == RigidBody.MODE_STATIC:
+			self.mode = RigidBody.MODE_RIGID
+		self.axis_lock_angular_z = false
+		self.axis_lock_angular_x = false
+		self.axis_lock_angular_y = false
 		self.sleeping = false
 
 
