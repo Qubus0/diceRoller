@@ -5,17 +5,19 @@ var setting_path := "user://settings.json"
 var settings := {}
 
 signal setting_changed(setting, value)
-
+signal settings_saved
 
 func _ready() -> void:
 	load_settings()
 
 
-func save_settings() -> void:
+func save_settings(silent: bool = false) -> void:
 	var file := File.new()
 	file.open(setting_path, File.WRITE)
 	file.store_string(JSON.print(settings))
 	file.close()
+	if not silent:
+		emit_signal("settings_saved")
 
 
 func load_settings() -> void:

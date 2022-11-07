@@ -27,6 +27,7 @@ func _ready() -> void:
 		select.connect('remove_dice', self, '_on_DiceSelectRemove_button_down')
 		$Layout/Interactions/DiceSelects.add_child(select)
 	apply_settings_recursive(self)
+	SettingsData.connect("settings_saved", self, "toast_message", ["Saved!", 0, 2])
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -36,6 +37,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		var type: String = dice_types[type_index - 1] # start at 0
 		self.selected_type = type
 		emit_signal('add_die', selected_type)
+
+
+func toast_message(message: String, delay: float = 0, lifetime: float = 0) -> void:
+	var toast: Toast = preload("res://Interface/Toast.tscn").instance()
+	toast.message = message
+	toast.delay = delay
+	toast.lifetime = lifetime
+	if $Toasts.get_child_count() > 0:
+		$Toasts.remove_child($Toasts.get_children()[0])
+	$Toasts.add_child(toast)
 
 
 func apply_settings_recursive(node: Node) -> void:

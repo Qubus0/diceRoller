@@ -1,5 +1,9 @@
 extends Spatial
 
+
+export var version: String
+export(String, MULTILINE) var version_message: String
+
 var global_area_scale := .2
 var scale_step_size := .02
 
@@ -9,6 +13,11 @@ var zoom_in := false
 
 func _ready() -> void:
 	randomize()
+
+	if not SettingsData.get_setting("last_version") == version:
+		SettingsData.set_setting("last_version", version)
+		SettingsData.save_settings(true)
+		$Interface.toast_message(version_message, 2)
 
 
 func _unhandled_input(event: InputEvent) -> void:

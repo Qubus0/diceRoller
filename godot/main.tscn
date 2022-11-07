@@ -42,6 +42,20 @@ radius = 8.0
 
 [node name="main" type="Spatial"]
 script = ExtResource( 2 )
+version = "1"
+version_message = "New update!
+Implemented a new settings system 
+to save your preferences between sessions.
+With that, I've also added a few options of 
+customizing the UI and dice behaviour.
+
+I've also increased the wall width so you can 
+throw dice harder
+
+Next up: dice syntax support!
+
+Have feedback? You can tell me here:
+[url]https://discord.gg/h7udm2T2GT[/url]"
 
 [node name="Interface" parent="." instance=ExtResource( 4 )]
 

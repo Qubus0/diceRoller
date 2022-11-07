@@ -37,8 +37,9 @@ signal toggled(button_pressed)
 
 
 func _ready() -> void:
-	if disabled:
-		set_disabled(disabled)
+	button.disabled = disabled
+	button.pressed = pressed
+
 	sync_theme()
 	set_label_text(label_text)
 	set_show_label_left(show_label_left)

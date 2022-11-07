@@ -5,7 +5,6 @@
 
 [resource]
 size = 15
-outline_color = Color( 1, 0.92549, 0.839216, 1 )
 use_filter = true
 font_data = ExtResource( 1 )
 fallback/0 = ExtResource( 2 )
