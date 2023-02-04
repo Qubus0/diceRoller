@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Interface/Icons/d6.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Statistics.tscn" type="PackedScene" id=2]
@@ -21,21 +21,8 @@
 [ext_resource path="res://Interface/Help.tscn" type="PackedScene" id=19]
 [ext_resource path="res://icon.png" type="Texture" id=20]
 [ext_resource path="res://Interface/Fonts/JetBrainsMono-SemiBold.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://Interface/Themes/dice_input_theme.tres" type="Theme" id=22]
-[ext_resource path="res://Interface/Scripts/CommandInput.gd" type="Script" id=23]
-[ext_resource path="res://Interface/Icons/play.png" type="Texture" id=24]
-[ext_resource path="res://Interface/Icons/commands.png" type="Texture" id=25]
-
-[sub_resource type="StyleBoxFlat" id=40]
-content_margin_left = 6.0
-content_margin_right = 6.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
-bg_color = Color( 1, 0.92549, 0.839216, 1 )
-corner_radius_top_left = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="CanvasItemMaterial" id=41]
+[ext_resource path="res://Interface/DiceCommands.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Interface/Icons/commands.png" type="Texture" id=23]
 
 [sub_resource type="InputEventAction" id=19]
 action = "add_die"
@@ -106,105 +93,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 theme = ExtResource( 12 )
 script = ExtResource( 4 )
-
-[node name="DiceCommands" type="VBoxContainer" parent="."]
-visible = false
-margin_left = 30.0
-margin_top = 30.0
-margin_right = 151.0
-margin_bottom = 64.0
-
-[node name="HBox" type="HBoxContainer" parent="DiceCommands"]
-margin_right = 151.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 22 )
-custom_constants/separation = 0
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="IconAspect" type="AspectRatioContainer" parent="DiceCommands/HBox"]
-margin_right = 40.0
-margin_bottom = 40.0
-mouse_filter = 2
-size_flags_vertical = 3
-stretch_mode = 1
-alignment_horizontal = 0
-alignment_vertical = 0
-
-[node name="DiceIcon" type="PanelContainer" parent="DiceCommands/HBox/IconAspect"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-hint_tooltip = "Dice type"
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 40 )
-
-[node name="Icon" type="TextureRect" parent="DiceCommands/HBox/IconAspect/DiceIcon"]
-self_modulate = Color( 0.12549, 0.235294, 0.337255, 1 )
-material = SubResource( 41 )
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 34.0
-margin_bottom = 34.0
-size_flags_vertical = 3
-texture = ExtResource( 25 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CommandInput" type="LineEdit" parent="DiceCommands/HBox"]
-margin_left = 40.0
-margin_right = 118.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 0 )
-hint_tooltip = "Number of dice to add"
-size_flags_horizontal = 3
-size_flags_vertical = 3
-align = 2
-expand_to_text_length = true
-placeholder_text = "4d6d1"
-script = ExtResource( 23 )
-
-[node name="Spacer" type="MarginContainer" parent="DiceCommands/HBox"]
-margin_left = 118.0
-margin_right = 126.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 8, 0 )
-size_flags_vertical = 3
-
-[node name="RunCommand" type="TextureButton" parent="DiceCommands/HBox"]
-self_modulate = Color( 1, 0.92549, 0.839216, 1 )
-margin_left = 126.0
-margin_right = 151.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 25, 25 )
-hint_tooltip = "Add the entered number of dice"
-focus_mode = 0
-mouse_default_cursor_shape = 2
-size_flags_vertical = 3
-toggle_mode = true
-shortcut_in_tooltip = false
-enabled_focus_mode = 0
-texture_normal = ExtResource( 24 )
-expand = true
-stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="PanelContainer" type="PanelContainer" parent="DiceCommands"]
-margin_top = 44.0
-margin_right = 151.0
-margin_bottom = 64.0
 
 [node name="Layout" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -281,6 +169,28 @@ shortcut_in_tooltip = false
 shortcut = SubResource( 20 )
 text = "Add Last"
 icon = ExtResource( 1 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RollCommand" type="Button" parent="Layout/Interactions/Buttons/Buttons"]
+visible = false
+margin_top = 48.0
+margin_right = 171.0
+margin_bottom = 86.0
+grow_horizontal = 0
+hint_tooltip = "Execute the current command"
+focus_neighbour_top = NodePath("../../../DiceSelects")
+focus_neighbour_right = NodePath("../RollAll")
+focus_neighbour_bottom = NodePath("../ClearDice")
+focus_next = NodePath("../ClearDice")
+focus_previous = NodePath("../../../DiceSelects")
+mouse_default_cursor_shape = 2
+theme = ExtResource( 11 )
+shortcut_in_tooltip = false
+text = "Roll Command"
+icon = ExtResource( 23 )
 expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -547,6 +457,9 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 6.0
 
 [node name="Statistics" parent="Layout" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 1210.0
 margin_right = 1380.0
 margin_bottom = 840.0
@@ -556,6 +469,12 @@ rect_min_size = Vector2( 170, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+
+[node name="DiceCommands" parent="." instance=ExtResource( 22 )]
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 288.0
+margin_bottom = 94.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 visible = false
@@ -595,9 +514,8 @@ custom_fonts/font = SubResource( 39 )
 text = "Hundred
 Dice"
 
-[connection signal="mouse_entered" from="DiceCommands/HBox/CommandInput" to="DiceCommands/HBox/CommandInput" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="DiceCommands/HBox/CommandInput" to="DiceCommands/HBox/CommandInput" method="_on_mouse_exited"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/AddDie" to="." method="_on_AddDie_button_down"]
+[connection signal="pressed" from="Layout/Interactions/Buttons/Buttons/RollCommand" to="." method="_on_RollCommand_pressed"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/ClearDice" to="." method="_on_ClearDice_button_down"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/RollAll" to="." method="_on_Roll_button_down"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/LockValidDice" to="." method="_on_LockValidDice_button_down"]
@@ -613,3 +531,4 @@ Dice"
 [connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeUp" to="." method="_on_SizeUp_button_up"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_down"]
 [connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_up"]
+[connection signal="execute_command" from="DiceCommands" to="." method="_on_DiceCommands_execute_command"]

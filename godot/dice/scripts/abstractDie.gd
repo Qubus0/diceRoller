@@ -16,14 +16,16 @@ var max_side_height_difference := 0.0
 
 var mesh_scale := Vector3(die_scale, die_scale, die_scale)
 var shrunk_mesh := mesh_scale - Vector3(0.1, 0.1, 0.1)
-var mesh_tool := MeshDataTool.new()
+var mesh_tool := MeshDataTool.new() # used when hovering dice over other dice
 
 var invalid := false setget set_invalid, get_invalid
 var locked := false setget set_locked
 var locked_material := preload('res://dice/materials/BodyLocked.material')
 
 var state: int
-enum states {NONE, HOVERED, CLICKED, DRAGGED}
+enum states { NONE, HOVERED, CLICKED, DRAGGED }
+
+var group_id: String
 
 signal die_rolled(type, rolled_side, instance_id)
 signal die_died(type, instance_id)
@@ -56,7 +58,7 @@ func _process(delta: float) -> void:
 
 
 func get_rolled_side() -> int:
-	var highest_y := 0
+	var highest_y := 0.0
 	var highest_side := 0
 	var heights := []
 	for side in sides:

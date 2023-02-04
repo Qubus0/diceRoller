@@ -10,6 +10,8 @@ func apply_settings():
 				$VBox/Grid/InvertResize.pressed = SettingsData.get_setting(setting)
 			"gravity":
 				$VBox/HBoxContainer/Gravity.value = SettingsData.get_setting(setting, 10)
+			"show_unrolled":
+				$VBox/Grid/ShowUnrolled.pressed = SettingsData.get_setting(setting)
 
 
 func _on_InvertScroll_toggled(button_pressed) -> void:
@@ -27,4 +29,7 @@ func _on_AllowLockedMove_toggled(button_pressed) -> void:
 func _on_Gravity_value_changed(value: float) -> void:
 	SettingsData.set_setting("gravity", value)
 
+
+func _on_ShowUnrolled_toggled(button_pressed) -> void:
+	SettingsData.set_setting("show_unrolled", button_pressed)
 

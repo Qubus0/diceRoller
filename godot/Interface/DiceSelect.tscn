@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Interface/Scripts/DiceSelect.gd" type="Script" id=1]
 [ext_resource path="res://Interface/Themes/dice_input_theme.tres" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Interface/Scripts/NumberInput.gd" type="Script" id=4]
 [ext_resource path="res://Interface/Icons/add.png" type="Texture" id=5]
 [ext_resource path="res://Interface/Icons/d20.png" type="Texture" id=6]
+[ext_resource path="res://Interface/Scripts/IconButton.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=3]
 content_margin_left = 6.0
@@ -107,16 +108,21 @@ hint_tooltip = "Add the entered number of dice"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
-toggle_mode = true
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
 texture_normal = ExtResource( 5 )
 expand = true
 stretch_mode = 5
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+icon_color_normal = Color( 1, 0.92549, 0.839216, 1 )
+icon_color_disabled = Color( 0.552941, 0.411765, 0.478431, 1 )
+icon_color_focus = Color( 1, 0.768627, 0.564706, 1 )
+icon_color_hover = Color( 1, 0.768627, 0.564706, 1 )
+icon_color_pressed = Color( 1, 0.92549, 0.839216, 1 )
 
 [node name="Space" type="MarginContainer" parent="InteractionButtons"]
 margin_top = 20.0
@@ -134,16 +140,21 @@ focus_mode = 0
 mouse_default_cursor_shape = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.8
-toggle_mode = true
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
 texture_normal = ExtResource( 3 )
 expand = true
 stretch_mode = 5
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": ""
 }
+icon_color_normal = Color( 1, 0.768627, 0.564706, 1 )
+icon_color_disabled = Color( 0.552941, 0.411765, 0.478431, 1 )
+icon_color_focus = Color( 1, 0.92549, 0.839216, 1 )
+icon_color_hover = Color( 1, 0.92549, 0.839216, 1 )
+icon_color_pressed = Color( 1, 0.768627, 0.564706, 1 )
 
 [node name="Bottom" type="MarginContainer" parent="InteractionButtons"]
 margin_top = 39.0

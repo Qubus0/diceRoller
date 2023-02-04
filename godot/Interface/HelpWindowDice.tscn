@@ -54,7 +54,7 @@ size_flags_vertical = 3
 stretch = true
 
 [node name="Viewport" type="Viewport" parent="Preview/VBoxContainer/ViewportContainer"]
-size = Vector2( 920, 1848 )
+size = Vector2( 230, 462 )
 size_override_stretch = true
 own_world = true
 world = SubResource( 2196 )

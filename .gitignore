@@ -1,6 +1,7 @@
 # Godot
 godot/.godot
 godot/addons/*
+!godot/addons/dice_syntax
 godot/.import/
 
 # IDEs

@@ -3,6 +3,7 @@ extends Node
 class_name DieTypeData
 
 var type: String
+var group_id: String
 
 var sides := []			# [1, 2, 3 ...]   needed so things stay sorted
 var side_totals := {}	# { 1: [412, 443, ...(instace_id)], 2: [...], ...}
@@ -11,6 +12,7 @@ var instances_rolled := {}	# {412: 3, 413: 5, instance_id: rolled_side}
 
 func _init(die: Die) -> void:
 	type = die.type
+	group_id = die.group_id
 
 	sides = die.sides.keys()
 	sides.append(0) # invalid dice 'roll' 0

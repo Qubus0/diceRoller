@@ -89,7 +89,8 @@ func set_disabled(is_disabled: bool) -> void:
 
 func _on_Button_toggled(button_pressed: bool) -> void:
 	set_pressed(button_pressed)
-	emit_signal('toggled', button_pressed)
+	if not Engine.is_editor_hint():
+		emit_signal('toggled', button_pressed)
 
 
 func _on_Button_focus_entered() -> void:

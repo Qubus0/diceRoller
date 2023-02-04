@@ -4,8 +4,9 @@ extends Node
 var setting_path := "user://settings.json"
 var settings := {}
 
-signal setting_changed(setting, value)
+signal setting_changed(setting)
 signal settings_saved
+
 
 func _ready() -> void:
 	load_settings()
@@ -33,7 +34,7 @@ func load_settings() -> void:
 
 func set_setting(setting: String, value) -> void:
 	settings[setting] = value
-	emit_signal("setting_changed", setting, value)
+	emit_signal("setting_changed", setting)
 
 
 func get_setting(setting: String, default = null):

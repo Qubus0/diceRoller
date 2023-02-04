@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Interface/Icons/clear.png" type="Texture" id=1]
 [ext_resource path="res://Interface/Scripts/IconButton.gd" type="Script" id=2]
 [ext_resource path="res://Interface/Scripts/Toast.gd" type="Script" id=3]
+[ext_resource path="res://Interface/Themes/default_theme.tres" type="Theme" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 0.92549, 0.839216, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_top = 1.0
 
 [node name="Toast" type="PanelContainer"]
 anchor_left = 1.0
@@ -15,33 +26,34 @@ margin_bottom = 1.0
 mouse_filter = 2
 size_flags_horizontal = 9
 size_flags_vertical = 9
+theme = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="TextSpaceCorrecter" type="Label" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 7.0
-margin_top = 12.0
-margin_right = 101.0
-margin_bottom = 26.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 98.0
+margin_bottom = 28.0
 
 [node name="Message" type="RichTextLabel" parent="."]
 self_modulate = Color( 1, 0.92549, 0.839216, 1 )
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 101.0
-margin_bottom = 32.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 98.0
+margin_bottom = 29.0
 bbcode_enabled = true
 fit_content_height = true
 scroll_active = false
 
-[node name="Control" type="Control" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 101.0
-margin_bottom = 32.0
+[node name="C" type="Control" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 98.0
+margin_bottom = 29.0
 mouse_filter = 2
 
-[node name="Dismiss" type="TextureButton" parent="Control"]
+[node name="Dismiss" type="TextureButton" parent="C"]
 self_modulate = Color( 1, 0.92549, 0.839216, 1 )
 margin_left = -32.0
 margin_top = 2.0
@@ -58,12 +70,22 @@ icon_color_focus = Color( 1, 0.768627, 0.564706, 1 )
 icon_color_hover = Color( 1, 0.768627, 0.564706, 1 )
 icon_color_pressed = Color( 1, 0.92549, 0.839216, 1 )
 
+[node name="ProgressBar" type="ProgressBar" parent="C"]
+anchor_right = 1.0
+margin_left = -7.0
+margin_top = -9.0
+margin_right = 7.0
+margin_bottom = -7.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="Lifetime" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="meta_clicked" from="Message" to="." method="_on_Message_meta_clicked"]
-[connection signal="pressed" from="Control/Dismiss" to="." method="_on_Dismiss_pressed"]
+[connection signal="pressed" from="C/Dismiss" to="." method="_on_Dismiss_pressed"]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

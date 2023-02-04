@@ -12,8 +12,8 @@ func _ready() -> void:
 		set_pause(self, true)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.scancode == KEY_ESCAPE:
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.scancode == KEY_ESCAPE:
 		hide()
 
 
@@ -33,6 +33,8 @@ func show() -> void:
 
 
 func hide() -> void:
+	if not visible:
+		return
 	if name == "Settings":
 		SettingsData.save_settings()
 	set_pause(self, true)
@@ -43,9 +45,5 @@ func set_pause(node: Node, pause: bool) -> void:
 	if node.pause_mode == PAUSE_MODE_INHERIT or node.pause_mode == PAUSE_MODE_STOP:
 		node.set_process(!pause)
 		node.set_physics_process(!pause)
-		node.set_process_input(!pause)
-		node.set_process_internal(!pause)
-		node.set_process_unhandled_input(!pause)
-		node.set_process_unhandled_key_input(!pause)
 	for child in node.get_children():
 		set_pause(child, pause)

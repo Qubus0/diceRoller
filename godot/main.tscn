@@ -167,10 +167,11 @@ current = true
 [node name="ZoomTicks" type="Timer" parent="Camera"]
 wait_time = 0.15
 
-[connection signal="add_die" from="Interface" to="DiceManager" method="_on_Interface_add_die"]
+[connection signal="add_dice" from="Interface" to="DiceManager" method="_on_Interface_add_dice"]
 [connection signal="area_resized" from="Interface" to="." method="_on_Interface_area_resized"]
 [connection signal="camera_zoomed" from="Interface" to="." method="_on_Interface_camera_zoomed"]
 [connection signal="clear_dice" from="Interface" to="DiceManager" method="_on_Interface_clear_dice"]
+[connection signal="execute_command" from="Interface" to="DiceManager" method="_on_Interface_execute_command"]
 [connection signal="lock_valid" from="Interface" to="DiceManager" method="_on_Interface_lock_valid"]
 [connection signal="roll_all" from="Interface" to="DiceManager" method="_on_Interface_roll_all"]
 [connection signal="roll_invalid" from="Interface" to="DiceManager" method="_on_Interface_roll_invalid"]

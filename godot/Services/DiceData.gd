@@ -1,11 +1,18 @@
 extends Node
 
-var type_data := {} setget update_die_types 	# DieTypeData[]
+
+var type_data := {} setget update_die_types 	# { "type": DieTypeData }
+var command_expression: Expression
+var expression_components: Array = []
 
 
 func _on_die_rolled(type: String, rolled_side: int, instance_id: int) -> void:
+	var die: Die = instance_from_id(instance_id)
+	if die.group_id:
+		type += "-" + die.group_id
+
 	if not type_data.has(type):
-		type_data[type] = DieTypeData.new(instance_from_id(instance_id)) as DieTypeData
+		type_data[type] = DieTypeData.new(die)
 
 	# keep track of all instances and their rolled sides (this also gives us the total)
 	# if an instance is in there already, it also is in the sides array
@@ -18,11 +25,22 @@ func _on_die_rolled(type: String, rolled_side: int, instance_id: int) -> void:
 
 
 func _on_die_died(type: String, instance_id: int) -> void:
+	var die: Die = instance_from_id(instance_id)
+	if die.group_id:
+		type += "-" + die.group_id
+
 	if not type_data.has(type):
 		return
 	if type_data[type].has_instance(instance_id):
 		type_data[type].remove_from_side_totals(instance_id)
 	type_data[type].instances_rolled.erase(instance_id)
+
+
+func get_type_data_by_group_id(group_id: String) -> DieTypeData:
+	for data in type_data:
+		if (data as DieTypeData).group_id == group_id:
+			return data
+	return null
 
 
 func get_total() -> int:
@@ -32,10 +50,23 @@ func get_total() -> int:
 	return total
 
 
-func get_sum() -> int:
-	var sum := 0
-	for type in type_data:
-		sum += (type_data[type] as DieTypeData).get_sum()
+func get_sum() -> float:
+	var sum := 0.0
+	if command_expression:
+		var expression_component_values := []
+		for type in type_data:
+			expression_component_values.append(float((type_data[type] as DieTypeData).get_sum()))
+
+		if expression_component_values.size() < expression_components.size():
+			return 0.0
+
+		var result: float = command_expression.execute(expression_component_values, null, false)
+		if command_expression.has_execute_failed():
+			return 0.0
+		return result
+	else:
+		for type in type_data:
+			sum += (type_data[type] as DieTypeData).get_sum()
 	return sum
 
 

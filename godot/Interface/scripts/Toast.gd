@@ -2,8 +2,8 @@ extends PanelContainer
 class_name Toast
 
 var message: String
-var toasted_height := 0
-var untoasted_height := 0
+var toasted_height := 0.0
+var untoasted_height := 0.0
 var delay := 0.0
 var lifetime := -1.0
 var margin := 30
@@ -15,11 +15,16 @@ func _ready() -> void:
 #	modulate = Color.transparent
 	$Message.bbcode_text = message
 	$TextSpaceCorrecter.text = $Message.text
-	yield(get_tree(), "idle_frame") # wait for rect to update
+	$C/ProgressBar.max_value = lifetime
+	$C/ProgressBar.value = lifetime
+
+	# force rect to resize
+	hide()
+	show()
+	yield(get_tree(), "idle_frame")
 
 	set_anchors_and_margins_preset(Control.PRESET_BOTTOM_RIGHT)
 	margin_top -= margin
-	margin_bottom -= margin
 	margin_left -= margin
 	margin_right -= margin
 
@@ -47,6 +52,8 @@ func set_toast_height(pos: float):
 
 func _on_Tween_tween_all_completed() -> void:
 	if lifetime > 0:
+		tw.interpolate_property($C/ProgressBar, "value", lifetime, 0, lifetime)
+		tw.start()
 		$Lifetime.start(lifetime)
 
 

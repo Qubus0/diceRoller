@@ -20,12 +20,12 @@ script = ExtResource( 1 )
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 278.0
-margin_bottom = 139.0
+margin_bottom = 169.0
 custom_constants/separation = 20
 
 [node name="Grid" type="GridContainer" parent="VBox"]
 margin_right = 258.0
-margin_bottom = 80.0
+margin_bottom = 110.0
 custom_constants/vseparation = 10
 custom_constants/hseparation = 20
 columns = 2
@@ -76,10 +76,28 @@ margin_bottom = 80.0
 custom_styles/panel = SubResource( 2197 )
 show_label_left = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
-margin_top = 100.0
+[node name="Label4" type="Label" parent="VBox/Grid"]
+self_modulate = Color( 1, 0.92549, 0.839216, 1 )
+margin_top = 91.0
+margin_right = 178.0
+margin_bottom = 109.0
+hint_tooltip = "Locked dice can move, but not rotate"
+mouse_filter = 1
+mouse_default_cursor_shape = 16
+text = "Show unrolled sides"
+
+[node name="ShowUnrolled" parent="VBox/Grid" instance=ExtResource( 2 )]
+margin_left = 198.0
+margin_top = 90.0
 margin_right = 258.0
-margin_bottom = 119.0
+margin_bottom = 110.0
+custom_styles/panel = SubResource( 2197 )
+show_label_left = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox"]
+margin_top = 130.0
+margin_right = 258.0
+margin_bottom = 149.0
 custom_constants/separation = 50
 
 [node name="Label3" type="Label" parent="VBox/HBoxContainer"]
@@ -102,4 +120,5 @@ ticks_on_borders = true
 [connection signal="toggled" from="VBox/Grid/InvertScroll" to="." method="_on_InvertScroll_toggled"]
 [connection signal="toggled" from="VBox/Grid/InvertResize" to="." method="_on_InvertResize_toggled"]
 [connection signal="toggled" from="VBox/Grid/AllowLockedMove" to="." method="_on_AllowLockedMove_toggled"]
+[connection signal="toggled" from="VBox/Grid/ShowUnrolled" to="." method="_on_ShowUnrolled_toggled"]
 [connection signal="value_changed" from="VBox/HBoxContainer/Gravity" to="." method="_on_Gravity_value_changed"]

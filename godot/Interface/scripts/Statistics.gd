@@ -1,51 +1,84 @@
 extends Control
 
+
 onready var type_data_container := $Margin/Container
+onready var header_label: Label = $Margin/Container/TotalStatistic/Genral/Grid/Sum
+onready var header_icon: TextureRect = $Margin/Container/TotalStatistic/Genral/Grid/TypeContainer/TypeIcon
+
+var die_type_stats := {}
+
+export var dice_command := ""
+
+func _ready() -> void:
+	SettingsData.listen(self, "handle_statistics_setting")
+
+
+func apply_settings():
+	for setting in SettingsData.settings:
+		handle_statistics_setting(setting)
+
+
+func handle_statistics_setting(setting: String):
+	if setting == "use_commands":
+		if SettingsData.get_setting(setting):
+			header_icon.texture = preload("res://Interface/Icons/commands.png")
+			$Margin/Container/TotalStatistic/HSeparator.hide()
+		else:
+			header_icon.texture = preload("res://Interface/Icons/sum.png")
+			$Margin/Container/TotalStatistic/HSeparator.show()
 
 
 func _on_RefreshRate_timeout() -> void:
-	$Margin/Container/TotalStatistic/Genral/Grid/Sum.text = str(DiceData.get_sum())
+	var sum := DiceData.get_sum()
+	var float_precision := 0 if fmod(sum, 1.0) == 0 else 2
+
+	header_label.text = "%.*f" % [ float_precision, sum ]
 	update_dice_statistics()
 
 
 func update_dice_statistics() -> void:
+	var is_type_data_grouped: bool = false
+
 	for type in DiceData.type_data:
+		if "-" in type:
+			is_type_data_grouped = true
+
 		var type_data: DieTypeData = DiceData.type_data[type]
 		var type_stat: DieTypeStatistic
 
-		if type_data_container.has_node(type):
-			type_stat = type_data_container.get_node(type)
+		if die_type_stats.has(type):
+			type_stat = die_type_stats[type]
 			if type_data.instances_rolled.empty():
 				type_stat.queue_free()
-				#warning-ignore: return_value_discarded
+				die_type_stats.erase(type)
 				DiceData.type_data.erase(type)
 				return
 			type_stat.die_type_data = type_data
 			type_stat.update_labels()
-		else:
+		elif is_type_data_grouped:
 			type_stat = preload('res://Interface/DieTypeStatistic.tscn').instance()
 			type_stat.die_type_data = type_data
-			type_stat.name = type_data.type
+			type_stat.boxed_style = not not type_data.group_id
+			type_stat.name = type
+			die_type_stats[type] = type_stat
 			type_data_container.add_child(type_stat)
 
+	for type in die_type_stats:
+		if not type in DiceData.type_data.keys():
+			die_type_stats[type].queue_free()
 
-	for dice_stat in type_data_container.get_children():
-		if not dice_stat is DieTypeStatistic:
-			continue
-		if not dice_stat.name in DiceData.type_data.keys():
-			dice_stat.queue_free()
-
-	sort_dice_statistics()
+	if not is_type_data_grouped:
+		sort_dice_statistics()
 
 
 func sort_dice_statistics() -> void:
-	# offset the timer and total stats nodes, so they stay above the others
-	var offset := 2
+	# offset total stats node, so it stays above the others
+	var offset := 1
 
 	var sorted_types: Array = DiceData.type_data.keys()
 	sorted_types.sort_custom(self, "sort_dice_types_ascending")
 
-	for type_index in len(sorted_types):
+	for type_index in sorted_types.size():
 		var type_stat: Control = type_data_container.get_node(sorted_types[type_index])
 		type_data_container.move_child(type_stat, type_index + offset)
 

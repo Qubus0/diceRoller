@@ -74,7 +74,6 @@ margin_right = 230.0
 margin_bottom = 30.0
 custom_styles/panel = SubResource( 2199 )
 show_label_left = true
-disabled = true
 
 [node name="SettingLabel2" type="HBoxContainer" parent="Margin1/DiceTypes"]
 modulate = Color( 1, 0.92549, 0.839216, 1 )
@@ -297,7 +296,7 @@ __meta__ = {
 }
 
 [node name="Viewport" type="Viewport" parent="Margin2/DiceTheme/Preview"]
-size = Vector2( 4800, 4048 )
+size = Vector2( 300, 253 )
 size_override_stretch = true
 own_world = true
 world = SubResource( 2196 )

@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Interface/Scripts/CheckToggle.gd"
 }, {
+"base": "VBoxContainer",
+"class": "DiceCommands",
+"language": "GDScript",
+"path": "res://Interface/Scripts/DiceCommands.gd"
+}, {
 "base": "RigidBody",
 "class": "Die",
 "language": "GDScript",
@@ -24,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Services/DieTypeData.gd"
 }, {
-"base": "VBoxContainer",
+"base": "PanelContainer",
 "class": "DieTypeStatistic",
 "language": "GDScript",
 "path": "res://Interface/Scripts/DieTypeStatistic.gd"
@@ -48,16 +53,23 @@ _global_script_classes=[ {
 "class": "WindowContainer",
 "language": "GDScript",
 "path": "res://Interface/Scripts/WindowContainer.gd"
+}, {
+"base": "GDScript",
+"class": "dice_syntax",
+"language": "GDScript",
+"path": "res://addons/dice_syntax/dice_syntax.gd"
 } ]
 _global_script_class_icons={
 "CheckToggle": "",
+"DiceCommands": "",
 "Die": "res://icon.png",
 "DieTypeData": "",
 "DieTypeStatistic": "",
 "SimpleColorPickerButton": "",
 "Toast": "",
 "Window": "",
-"WindowContainer": ""
+"WindowContainer": "",
+"dice_syntax": ""
 }
 
 [application]
@@ -72,6 +84,10 @@ config/icon="res://icon.png"
 DiceData="*res://Services/DiceData.gd"
 DebugDraw="*res://addons/debug_draw/debug_draw.gd"
 SettingsData="*res://Services/SettingsData.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
@@ -133,6 +149,7 @@ ui_end={
 add_die={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":78,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777221,"unicode":0,"echo":false,"script":null)
  ]
 }
 add_max={
