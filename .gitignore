@@ -3,6 +3,8 @@ godot/.godot
 godot/addons/*
 !godot/addons/dice_syntax
 godot/.import/
+export/*
+docs/*.zip
 
 # IDEs
 .idea

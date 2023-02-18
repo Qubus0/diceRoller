@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="StatisticCommandNumber" type="PanelContainer"]
+margin_right = 185.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="."]
+margin_left = 7.0
+margin_top = 14.0
+margin_right = 178.0
+margin_bottom = 28.0
+align = 2
