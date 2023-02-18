@@ -2,8 +2,7 @@ extends Node
 
 
 var type_data := {} setget update_die_types 	# { "type": DieTypeData }
-var command_expression: Expression
-var expression_components: Array = []
+var dice_command: DiceCommand
 
 
 func _on_die_rolled(type: String, rolled_side: int, instance_id: int) -> void:
@@ -51,17 +50,19 @@ func get_total() -> int:
 
 
 func get_sum() -> float:
+	if not dice_command:
+		return 0.0
 	var sum := 0.0
-	if command_expression:
+	if dice_command.expression:
 		var expression_component_values := []
 		for type in type_data:
 			expression_component_values.append(float((type_data[type] as DieTypeData).get_sum()))
 
-		if expression_component_values.size() < expression_components.size():
+		if expression_component_values.size() < dice_command.expression_components.size():
 			return 0.0
 
-		var result: float = command_expression.execute(expression_component_values, null, false)
-		if command_expression.has_execute_failed():
+		var result: float = dice_command.expression.execute(expression_component_values, null, false)
+		if dice_command.expression.has_execute_failed():
 			return 0.0
 		return result
 	else:

@@ -9,20 +9,40 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "GDScript",
+"class": "ArrayLogic",
+"language": "GDScript",
+"path": "res://addons/dice_syntax/array_logic.gd"
+}, {
 "base": "PanelContainer",
 "class": "CheckToggle",
 "language": "GDScript",
 "path": "res://Interface/Scripts/CheckToggle.gd"
 }, {
-"base": "VBoxContainer",
-"class": "DiceCommands",
+"base": "Resource",
+"class": "DiceCommand",
 "language": "GDScript",
-"path": "res://Interface/Scripts/DiceCommands.gd"
+"path": "res://Services/DiceCommand.gd"
+}, {
+"base": "Resource",
+"class": "DiceCommandGroupRule",
+"language": "GDScript",
+"path": "res://Services/DiceCommandGroupRule.gd"
+}, {
+"base": "GDScript",
+"class": "DiceCommandUtilities",
+"language": "GDScript",
+"path": "res://addons/dice_syntax/dice_helpers.gd"
+}, {
+"base": "VBoxContainer",
+"class": "DiceCommandsInput",
+"language": "GDScript",
+"path": "res://Interface/Scripts/DiceCommandsInput.gd"
 }, {
 "base": "RigidBody",
 "class": "Die",
 "language": "GDScript",
-"path": "res://dice/scripts/AbstractDie.gd"
+"path": "res://dice/scripts/abstractDie.gd"
 }, {
 "base": "Node",
 "class": "DieTypeData",
@@ -38,6 +58,16 @@ _global_script_classes=[ {
 "class": "SimpleColorPickerButton",
 "language": "GDScript",
 "path": "res://Interface/Scripts/SimpleColorPickerButton.gd"
+}, {
+"base": "GDScript",
+"class": "SingleDiceCommandUtils",
+"language": "GDScript",
+"path": "res://addons/dice_syntax/single_dice_funs.gd"
+}, {
+"base": "GDScript",
+"class": "StringManipulation",
+"language": "GDScript",
+"path": "res://addons/dice_syntax/string_manip.gd"
 }, {
 "base": "PanelContainer",
 "class": "Toast",
@@ -60,12 +90,18 @@ _global_script_classes=[ {
 "path": "res://addons/dice_syntax/dice_syntax.gd"
 } ]
 _global_script_class_icons={
+"ArrayLogic": "",
 "CheckToggle": "",
-"DiceCommands": "",
+"DiceCommand": "",
+"DiceCommandGroupRule": "",
+"DiceCommandUtilities": "",
+"DiceCommandsInput": "",
 "Die": "res://icon.png",
 "DieTypeData": "",
 "DieTypeStatistic": "",
 "SimpleColorPickerButton": "",
+"SingleDiceCommandUtils": "",
+"StringManipulation": "",
 "Toast": "",
 "Window": "",
 "WindowContainer": "",
@@ -93,8 +129,8 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1440
 window/size/height=900
-window/size/test_width=2880
-window/size/test_height=1800
+window/size/test_width=1440
+window/size/test_height=900
 window/dpi/allow_hidpi=true
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="2d"

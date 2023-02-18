@@ -8,6 +8,7 @@ onready var COLLISION: CollisionShape = $CollisionShape
 export var type: String
 export var number_of_sides := 0
 export var die_scale := 1.0
+var group_id: String
 
 var time := 0.0
 
@@ -25,7 +26,6 @@ var locked_material := preload('res://dice/materials/BodyLocked.material')
 var state: int
 enum states { NONE, HOVERED, CLICKED, DRAGGED }
 
-var group_id: String
 
 signal die_rolled(type, rolled_side, instance_id)
 signal die_died(type, instance_id)
@@ -44,6 +44,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if translation.y < -4:
+		respawn()
+
 	time += delta
 	if time > 1:
 		time = 0
@@ -53,8 +56,10 @@ func _process(delta: float) -> void:
 		else:
 			set_invalid(false)
 		emit_signal('die_rolled', type, rolled, get_instance_id())
-	if translation.y < -4:
-		respawn()
+
+
+func has_settled() -> bool:
+	return sleeping
 
 
 func get_rolled_side() -> int:

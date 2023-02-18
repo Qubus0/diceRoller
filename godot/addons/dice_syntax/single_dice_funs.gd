@@ -1,4 +1,5 @@
 extends GDScript
+class_name SingleDiceCommandUtils
 # internal functions that parse single dice rolls
 
 
@@ -58,7 +59,7 @@ static func base_dice_parser(dice_string: String, group_id: String)->Dictionary:
 	tokens.remove(0)
 
 	# check for sort rule, if s exists, sort the results
-	var sort_rule = tokens.find("s")
+	var sort_rule = Array(tokens).find("s")
 	rolling_rules["sort"] = sort_rule != -1
 	if sort_rule != -1:
 		tokens.remove(sort_rule)

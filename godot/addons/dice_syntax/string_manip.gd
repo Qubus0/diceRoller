@@ -1,5 +1,5 @@
 extends GDScript
-
+class_name StringManipulation
 
 static func str_extract(string: String, pattern: String):
 	var regex = RegEx.new()
@@ -10,9 +10,9 @@ static func str_extract(string: String, pattern: String):
 	else:
 		return  result.get_string()
 
-static func str_extract_all(string: String, pattern: String)->Array:
+static func str_extract_all(string: String, pattern: String) -> PoolStringArray:
 	var regex = RegEx.new()
-	var out: Array
+	var out: PoolStringArray
 	regex.compile(pattern)
 	for x in regex.search_all(string):
 		out.append(x.get_string())

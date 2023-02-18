@@ -30,7 +30,7 @@ func _ready() -> void:
 	apply_settings_recursive(self)
 	SettingsData.connect("settings_saved", self, "toast_message", ["Saved!", 0, 2])
 
-	$DiceCommands.connect("toast_error", self, "toast_message")
+	$DiceCommandsInput.connect("toast_error", self, "toast_message")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -90,7 +90,7 @@ func handle_interface_setting(setting: String) -> void:
 	if setting == "use_commands":
 		emit_signal("clear_dice", "")
 		var is_dice_commands_visible: bool = SettingsData.get_setting(setting)
-		$DiceCommands.visible = is_dice_commands_visible
+		$DiceCommandsInput.visible = is_dice_commands_visible
 		$Layout/Interactions/Buttons/Buttons/RollCommand.visible = is_dice_commands_visible
 		$Layout/Interactions/DiceSelects.visible = not is_dice_commands_visible
 		$Layout/Interactions/Buttons/Buttons/AddDie.visible = not is_dice_commands_visible
@@ -100,7 +100,7 @@ func _on_DiceSelectRemove_button_down(type: String) -> void:
 	emit_signal("clear_dice", type)
 
 
-func _on_DiceCommands_execute_command(parsed_command: Dictionary) -> void:
+func _on_DiceCommandsInput_execute_command(parsed_command: DiceCommand) -> void:
 	emit_signal("execute_command", parsed_command)
 
 
@@ -109,7 +109,7 @@ func _on_AddDie_button_down() -> void:
 
 
 func _on_RollCommand_pressed() -> void:
-	($DiceCommands as DiceCommands).try_execute_command()
+	($DiceCommandsInput as DiceCommandsInput).try_execute_command()
 
 
 func _on_ClearDice_button_down() -> void:

@@ -1,4 +1,5 @@
 extends GDScript
+class_name DiceCommandUtilities
 
 # convert integer to a different base, return the result as an array of digits
 static func base_convert(number:int, base:int)->Array:
@@ -20,7 +21,7 @@ static func base_convert(number:int, base:int)->Array:
 	return digits
 
 # convert integer inter to base 26 and return as letters for use as names in expressions
-static func int_to_letter(number:int)->String:
+static func int_to_letter(number:int) -> String:
 	var letters = "zabcdefghijklmnopqrstuvwxy"
 	var num_array = base_convert(number, letters.length())
 	var out:String

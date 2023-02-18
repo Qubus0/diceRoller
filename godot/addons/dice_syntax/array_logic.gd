@@ -1,4 +1,5 @@
 extends GDScript
+class_name ArrayLogic
 # functions meant to deal with numeric arrays
 
 
@@ -85,7 +86,7 @@ static func order(array: Array)->Array:
 
 static func array_compare(array: Array, reference: float, equal: bool = false, less: bool = false, greater: bool = false)->Array:
 	var out: Array
-	
+
 	for x in array:
 		var result = false
 		if equal:
@@ -98,8 +99,8 @@ static func array_compare(array: Array, reference: float, equal: bool = false, l
 			if x > reference:
 				result = true
 		out.append(result)
-				
-	
+
+
 	return out
 
 static func array_not(array: Array)->Array:
@@ -124,9 +125,9 @@ static func sample(array: Array, n: int, rng: RandomNumberGenerator, replace: bo
 		out.append(array[samp])
 		if not replace:
 			array.remove(samp)
-		
-	
-	
+
+
+
 	return out
 
 # append single elements/arrays with each other
@@ -149,15 +150,15 @@ static func sample_weights(array: Array, weights: Array, n: int, rng: RandomNumb
 	weights[0] = float(weights[0])/float(sm)
 	for i in range(1, weights.size()):
 		weights[i] = float(weights[i])/float(sm) + weights[i-1]
-	
-	
+
+
 	for i in range(n):
 		var rand = rng.randf()
 		var curr_index = 0
 		while rand > weights[curr_index]:
 			curr_index += 1
 		out.append(array[curr_index])
-	
+
 	return out
 
 static func tests():
@@ -165,7 +166,7 @@ static func tests():
 	var true_true = [true, true]
 	var true_false = [true, false]
 	var false_false = [false, false]
-	
+
 	assert(sum_bool(true_true) == 2, "bad sum")
 	assert(sum_bool(true_false) == 1, "bad sum")
 	assert(sum_bool(false_false) == 0, "bad sum" )

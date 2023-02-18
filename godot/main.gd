@@ -9,7 +9,7 @@ var scale_step_size := .02
 
 var size_up := false
 var zoom_in := false
-
+var toast_time := 0.0
 
 func _ready() -> void:
 	randomize()
@@ -18,6 +18,22 @@ func _ready() -> void:
 		SettingsData.set_setting("last_version", version)
 		SettingsData.save_settings(true)
 		$Interface.toast_message(version_message, 2, 60)
+		$DiceManager.add_dice("d6", 5, "z")
+
+
+func _process(delta: float) -> void:
+	if Engine.get_frames_per_second() < 30:
+		toast_time += delta
+
+	if toast_time > 4:
+		toast_time = -14
+		$Interface.toast_message(
+			"Experiencing low framerate?\n" +
+			"Try increasing the area size before lowering the dice count.\n\n" +
+			"If you would like Hundred Dice released on Steam,\n" +
+			"consider supporting me on [url=https://www.buymeacoffee.com/SteenQ]Buy Me a Coffee[/url]",
+			0, 14
+		)
 
 
 func _unhandled_input(event: InputEvent) -> void:

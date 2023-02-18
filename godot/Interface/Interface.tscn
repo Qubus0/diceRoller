@@ -21,7 +21,7 @@
 [ext_resource path="res://Interface/Help.tscn" type="PackedScene" id=19]
 [ext_resource path="res://icon.png" type="Texture" id=20]
 [ext_resource path="res://Interface/Fonts/JetBrainsMono-SemiBold.ttf" type="DynamicFontData" id=21]
-[ext_resource path="res://Interface/DiceCommands.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Interface/DiceCommandsInput.tscn" type="PackedScene" id=22]
 [ext_resource path="res://Interface/Icons/commands.png" type="Texture" id=23]
 
 [sub_resource type="InputEventAction" id=19]
@@ -470,10 +470,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 
-[node name="DiceCommands" parent="." instance=ExtResource( 22 )]
-margin_left = 30.0
+[node name="DiceCommandsInput" parent="." instance=ExtResource( 22 )]
+margin_left = 350.0
 margin_top = 30.0
-margin_right = 288.0
+margin_right = 608.0
 margin_bottom = 94.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
@@ -531,4 +531,4 @@ Dice"
 [connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeUp" to="." method="_on_SizeUp_button_up"]
 [connection signal="button_down" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_down"]
 [connection signal="button_up" from="Layout/Interactions/Buttons/Buttons/Tertiary2/Container/SizeDown" to="." method="_on_SizeDown_button_up"]
-[connection signal="execute_command" from="DiceCommands" to="." method="_on_DiceCommands_execute_command"]
+[connection signal="execute_command" from="DiceCommandsInput" to="." method="_on_DiceCommandsInput_execute_command"]

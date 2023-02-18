@@ -1,5 +1,9 @@
 extends Spatial
 
+signal added_dice_group
+
+const dice_group_prefix := "die-"
+
 export var dice_type_strings: PoolStringArray
 export var dice_type_scenes: Dictionary
 
@@ -10,6 +14,36 @@ var dice_locked := false
 
 func _ready() -> void:
 	SettingsData.listen(self, "_on_settings_changed")
+
+
+func _process(delta: float) -> void:
+	# no command, don't interfere with freerolls
+	if not DiceData.dice_command:
+		return
+	# don't do anything if not all results are in
+	if not DiceData.dice_command.all_groups_settled():
+		return
+	printt("stage:", DiceData.dice_command.execution_stage)
+
+	# stop other moving dice from changing results
+	for die in get_children():
+		(die as Die).locked = true
+
+	match DiceData.dice_command.execution_stage:
+		DiceCommand.stages.REROLL:
+			var did_reroll := false
+			for group in DiceData.dice_command.dice_groups:
+				var dice_group := (group as DiceCommandGroupRule)
+
+				for die in dice_group.get_reroll_dice():
+					die.locked = false
+					reroll_consecutive(die, 3)
+					did_reroll = true
+
+			if not did_reroll:
+				DiceData.dice_command.execution_stage += 1
+
+
 
 
 func add_dice(type: String, amount: int, group_id: String = "") -> void:
@@ -28,14 +62,18 @@ func add_multiple_dice(type: String, group_id: String = "") -> void:
 		max_addable[type] -= 1
 		add_die(type, group_id)
 		yield(get_tree().create_timer(.0003), 'timeout')
+	emit_signal("added_dice_group")
 
 
 func add_die(type: String, group_id: String = "") -> void:
-	assert(dice_type_scenes.has(type), "invalid dice type: " + str(type))
+	if not dice_type_scenes.has(type):
+		assert(false, "invalid dice type: " + str(type))
+		return
 
 	var new_die: Die = (dice_type_scenes[type] as PackedScene).instance()
 	self.add_child(new_die)
 	new_die.group_id = group_id
+	new_die.add_to_group(group_id)
 	new_die.gravity_scale = SettingsData.get_setting("gravity", 4)
 
 	# warning-ignore:return_value_discarded
@@ -48,6 +86,7 @@ func add_die(type: String, group_id: String = "") -> void:
 
 
 func clear_dice(type: String = "") -> void:
+	DiceData.dice_command = null
 	if type:
 		max_addable[type] = 0
 	else:
@@ -59,41 +98,26 @@ func clear_dice(type: String = "") -> void:
 			die.die()
 
 
-func get_lowest_rolled_die(group_id: String) -> int:
-	var type_data := DiceData.get_type_data_by_group_id(group_id)
-	if not type_data:
-		return 0
-
-	type_data.sides
-
-	return 0
-
-
-func get_highest_rolled_die(group_id: String) -> int:
-
-	return 0
-
-
-func get_rolled_dice_above_value(group_id: String, value: int) -> PoolIntArray:
-	return PoolIntArray([])
-
-
-func get_rolled_dice_below_value(group_id: String, value: int) -> PoolIntArray:
-	return PoolIntArray([])
-
-
 func _on_Interface_add_dice(type: String, amount: int = 1) -> void:
 	add_dice(type, amount)
 
 
-func _on_Interface_execute_command(parsed_command: Dictionary) -> void:
+func _on_Interface_execute_command(parsed_command: DiceCommand) -> void:
 	clear_dice()
-	DiceData.command_expression = parsed_command.dice_expression
-	DiceData.expression_components = parsed_command.expression_components
 
-	for dice_group in parsed_command.rules_array:
-		add_dice("d%s" % dice_group.dice_side, dice_group.dice_count, dice_group.group_id)
-		yield(get_tree().create_timer(1), "timeout")
+	for dice_group in parsed_command.dice_groups:
+		var group := dice_group as DiceCommandGroupRule
+		var group_id := dice_group_prefix + str(group.id)
+		add_dice("d%s" % group.dice_type_side_count, group.dice_count, group_id)
+		yield(self, "added_dice_group")
+		group.dice_instances = get_tree().get_nodes_in_group(group_id)
+
+	parsed_command.execution_stage += 1
+	DiceData.dice_command = parsed_command
+	print()
+	print(JSON.print(str2var(str(parsed_command)), "  "))
+	print()
+
 
 
 func _on_Interface_clear_dice(type: String) -> void:
@@ -156,6 +180,12 @@ func randomize_throw(die: Die) -> void:
 		random_value_in_range(5, 10, true),
 		random_value_in_range(5, 10, true)
 	)
+
+
+func reroll_consecutive(die: Die, rerolls := 1, delay := 0.2):
+	for roll in rerolls:
+		roll(die)
+		yield(get_tree().create_timer(delay), "timeout")
 
 
 func roll(die: Die) -> void:
