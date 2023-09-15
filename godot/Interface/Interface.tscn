@@ -471,10 +471,10 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="DiceCommandsInput" parent="." instance=ExtResource( 22 )]
-margin_left = 350.0
-margin_top = 30.0
-margin_right = 608.0
-margin_bottom = 94.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 274.0
+margin_bottom = 80.0
 
 [node name="Settings" parent="." instance=ExtResource( 8 )]
 visible = false

@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="CommandStatisticOperator" type="Label"]
+margin_top = -1.0
+margin_right = 200.0
+margin_bottom = 25.0
+rect_pivot_offset = Vector2( -218, -62 )
+text = "*"
+valign = 1

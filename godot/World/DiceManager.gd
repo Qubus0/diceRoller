@@ -157,8 +157,7 @@ func _on_settings_changed(setting: String) -> void:
 				die.gravity_scale = SettingsData.get_setting(setting)
 		"use_commands":
 			if not SettingsData.get_setting(setting):
-				DiceData.command_expression = null
-				DiceData.expression_components = []
+				DiceData.dice_command = null
 
 
 func randomize_throw(die: Die) -> void:

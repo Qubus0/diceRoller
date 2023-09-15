@@ -44,7 +44,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://dice/scripts/abstractDie.gd"
 }, {
-"base": "Node",
+"base": "Resource",
 "class": "DieTypeData",
 "language": "GDScript",
 "path": "res://Services/DieTypeData.gd"
@@ -53,6 +53,11 @@ _global_script_classes=[ {
 "class": "DieTypeStatistic",
 "language": "GDScript",
 "path": "res://Interface/Scripts/DieTypeStatistic.gd"
+}, {
+"base": "Die",
+"class": "MockDie",
+"language": "GDScript",
+"path": "res://test/mock_die.gd"
 }, {
 "base": "Button",
 "class": "SimpleColorPickerButton",
@@ -99,6 +104,7 @@ _global_script_class_icons={
 "Die": "res://icon.png",
 "DieTypeData": "",
 "DieTypeStatistic": "",
+"MockDie": "",
 "SimpleColorPickerButton": "",
 "SingleDiceCommandUtils": "",
 "StringManipulation": "",
@@ -129,8 +135,8 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1440
 window/size/height=900
-window/size/test_width=1440
-window/size/test_height=900
+window/size/test_width=2160
+window/size/test_height=1350
 window/dpi/allow_hidpi=true
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="2d"
